@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="@android:color/white"
+    android:layout_margin="10dp"
+    app:cardElevation="8dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/favRel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/favourite"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:id="@+id/itemImg"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/favRel"
+            android:src="@drawable/vegetables"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/slugNameTxt"
+            android:textSize="12sp"
+            android:layout_below="@+id/itemImg"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/itemNameTxt"
+            android:text="Desc"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:layout_below="@+id/slugNameTxt"
+            android:textColor="@color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="5dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/itemNameTxt"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/addCartImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/add_cart" />
+
+            <TextView
+                android:id="@+id/actualPriceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/offerPriceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@+id/addCartImg"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/actualPriceTxt"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

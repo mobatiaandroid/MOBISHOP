@@ -115,10 +115,11 @@ class CartActivity : AppCompatActivity() {
                         }
                         Log.e("TOTAL",totalAmt.toString())
                         totalAmountTxt.setText("  ₹ "+totalAmt.toString()+"  ")
-                        val cartAdapter = CartItemRecyclerAdapter(cartArrayList,mContext,filePath)
+                        val cartAdapter = CartItemRecyclerAdapter(cartArrayList,mContext,filePath,totalAmountTxt,totalAmt)
                         cartRecycler.setAdapter(cartAdapter)
                     }
-                    else{
+                    else
+                    {
 
                     }
                 }

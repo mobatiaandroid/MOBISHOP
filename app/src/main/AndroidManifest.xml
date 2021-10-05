@@ -31,6 +31,9 @@
         <activity android:name=".home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
         <activity android:name=".home.CartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
@@ -47,6 +50,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
         <activity android:name=".product_detail.ProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".login.LoginOtpConfirmationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".signup.SignupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".signup.SignUpOtpConfirmationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".signup.SignUpLocationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
     </application>

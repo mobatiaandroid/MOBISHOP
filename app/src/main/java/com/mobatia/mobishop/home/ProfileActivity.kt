@@ -8,7 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobatia.mobishop.R
+import com.mobatia.mobishop.home.adapter.CartItemRecyclerAdapter
+import com.mobatia.mobishop.home.adapter.ProfileRecyclerAdapter
+import com.mobatia.mobishop.home.model.CartItemsModel
 import com.mobatia.mobishop.home.model.HomeCategoriesArrayModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -20,7 +25,9 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var otherImg: ImageView
     lateinit var homeImg: ImageView
     lateinit var categoryArrayList:ArrayList<HomeCategoriesArrayModel>
+    lateinit var profileArrayList:ArrayList<String>
     lateinit var filePath:String
+    lateinit var profileRecycler: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -38,7 +45,17 @@ class ProfileActivity : AppCompatActivity() {
         profileImg=findViewById(R.id.profileImg)
         otherImg=findViewById(R.id.otherImg)
         homeImg=findViewById(R.id.homeImg)
-
+        profileRecycler=findViewById(R.id.profileRecycler)
+        var linearLayoutManager = LinearLayoutManager(mContext)
+        profileRecycler.layoutManager = linearLayoutManager
+        profileArrayList= ArrayList()
+        profileArrayList.add("Account Details")
+        profileArrayList.add("Address Details")
+        profileArrayList.add("Orders")
+        profileArrayList.add("Deactivate Account")
+        profileArrayList.add("Logout")
+        val profileAdapter = ProfileRecyclerAdapter(profileArrayList,mContext)
+        profileRecycler.setAdapter(profileAdapter)
         cartImg.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, CartActivity::class.java)

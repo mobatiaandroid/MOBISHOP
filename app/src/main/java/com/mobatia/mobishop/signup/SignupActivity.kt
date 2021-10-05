@@ -1,46 +1,30 @@
-package com.mobatia.mobishop.login
+package com.mobatia.mobishop.signup
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Dialog
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.Point
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.provider.Settings
 import android.text.Editable
 import android.text.Selection
 import android.text.TextWatcher
-import android.util.Log
-import android.view.Display
 import android.view.View
-import android.view.Window
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import com.mobatia.mobishop.R
-import com.mobatia.mobishop.category_products.CategoryProductsActivity
-import com.mobatia.mobishop.signup.SignupActivity
+import com.mobatia.mobishop.login.LoginActivity
+import com.mobatia.mobishop.login.LoginOtpConfirmationActivity
 
-class LoginActivity : Activity() {
-
-    lateinit var mContext: Context
+class SignupActivity : Activity() {
     lateinit var phnNumberTxt: EditText
     lateinit var proceedBtn: Button
     lateinit var signInHintTxt: TextView
     lateinit var signUpTxt: TextView
+    lateinit var mContext: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_sign_up)
         mContext = this
         initUI()
     }
@@ -50,7 +34,7 @@ class LoginActivity : Activity() {
         proceedBtn=findViewById(R.id.proceedBtn)
         signInHintTxt=findViewById(R.id.signInHintTxt)
         signUpTxt=findViewById(R.id.signUpTxt)
-        signInHintTxt.setText("Sign in to track your orders,View your wish list or reorder your purchases")
+        signInHintTxt.setText("Sign up to track your orders,View your wish list or reorder your purchases")
         phnNumberTxt.setText("+91")
         Selection.setSelection(phnNumberTxt.getText(), phnNumberTxt.getText().length)
 
@@ -76,15 +60,18 @@ class LoginActivity : Activity() {
         })
 
         proceedBtn.setOnClickListener(View.OnClickListener {
-            val intent = Intent(mContext, LoginOtpConfirmationActivity::class.java)
+            val intent = Intent(mContext, SignUpOtpConfirmationActivity::class.java)
             intent.putExtra("phn_no",phnNumberTxt.text.toString().trim())
             startActivity(intent)
         })
         signUpTxt.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         })
 
     }
+
+
 
 
 

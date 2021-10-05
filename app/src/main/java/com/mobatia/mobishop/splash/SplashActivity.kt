@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.mobatia.mobishop.R
 import com.mobatia.mobishop.home.HomeActivity
+import com.mobatia.mobishop.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     lateinit var mContext: Context
@@ -19,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         mContext=this
         Handler().postDelayed({
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
 
 

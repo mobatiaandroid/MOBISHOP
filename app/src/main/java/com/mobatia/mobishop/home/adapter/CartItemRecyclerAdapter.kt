@@ -22,7 +22,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 
-class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartItemsModel>, private var mContext: Context, private var filepath:String) :
+class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartItemsModel>, private var mContext: Context, private var filepath:String,private var totalAmountTxt:TextView,private var totalAmt:Double) :
 
     RecyclerView.Adapter<CartItemRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -86,6 +86,8 @@ class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartIt
             {
 
                 cartDetailArrayList.removeAt(pos)
+                totalAmt=totalAmt-cartDetailArrayList.get(pos).total.toInt()
+                totalAmountTxt.setText(totalAmt.toString())
                 notifyDataSetChanged()
             }
 

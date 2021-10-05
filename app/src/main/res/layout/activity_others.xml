@@ -49,4 +49,13 @@
             android:layout_weight="20"
             android:src="@drawable/more_active" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/otherRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/featureLinear"
+        android:layout_marginTop="50dp"
+        android:overScrollMode="never"
+        android:scrollbars="vertical" />
 </RelativeLayout>

@@ -8,7 +8,11 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobatia.mobishop.R
+import com.mobatia.mobishop.home.adapter.OtherRecyclerAdapter
+import com.mobatia.mobishop.home.adapter.ProfileRecyclerAdapter
 import com.mobatia.mobishop.home.model.HomeCategoriesArrayModel
 
 class OtherActivity : AppCompatActivity() {
@@ -21,6 +25,8 @@ class OtherActivity : AppCompatActivity() {
     lateinit var homeImg: ImageView
     lateinit var categoryArrayList:ArrayList<HomeCategoriesArrayModel>
     lateinit var filePath:String
+    lateinit var otherRecycler: RecyclerView
+    lateinit var otherArrayList:ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_others)
@@ -38,7 +44,17 @@ class OtherActivity : AppCompatActivity() {
         profileImg=findViewById(R.id.profileImg)
         otherImg=findViewById(R.id.otherImg)
         homeImg=findViewById(R.id.homeImg)
-
+        otherRecycler=findViewById(R.id.otherRecycler)
+        var linearLayoutManager = LinearLayoutManager(mContext)
+        otherRecycler.layoutManager = linearLayoutManager
+        otherArrayList= ArrayList()
+        otherArrayList.add("About Mobishop")
+        otherArrayList.add("Terms of Service")
+        otherArrayList.add("Notifications")
+        otherArrayList.add("Contact Us")
+        otherArrayList.add("Help")
+        val otherAdapter = OtherRecyclerAdapter(otherArrayList,mContext)
+        otherRecycler.setAdapter(otherAdapter)
         cartImg.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS Cart")
             val intent = Intent(mContext, CartActivity::class.java)

@@ -3,7 +3,12 @@
     android:layout_height="match_parent"
     android:background="@color/light_grey"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+<ProgressBar
+    android:id="@+id/progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:layout_centerInParent="true"/>
     <LinearLayout
         android:id="@+id/featureLinear"
         android:layout_width="match_parent"
@@ -19,21 +24,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:src="@drawable/home_active" />
-
-        <ImageView
-            android:id="@+id/cartImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:src="@drawable/cart" />
+            android:src="@drawable/home" />
 
         <ImageView
             android:id="@+id/categoryImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:src="@drawable/category_active" />
+            android:src="@drawable/cart_active" />
+
+        <ImageView
+            android:id="@+id/cartImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:src="@drawable/category" />
 
         <ImageView
             android:id="@+id/profileImg"
@@ -69,7 +74,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/add_cart"
+            android:src="@drawable/back_button"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"/>
     </RelativeLayout>
@@ -107,6 +112,9 @@
                 android:textColorHint="@color/grey"
                 android:textColor="@color/black"
                 android:focusable="true"
+                android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/rectangle_with_full_white"
                 android:hint="@string/search_hint"/>

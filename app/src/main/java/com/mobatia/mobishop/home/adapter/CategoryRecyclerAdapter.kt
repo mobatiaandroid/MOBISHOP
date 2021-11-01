@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.mobatia.mobishop.R
 import com.mobatia.mobishop.home.model.HomeCategoriesArrayModel
+import com.mobatia.mobishop.home.model.HomeProductsArrayModel
 
 class CategoryRecyclerAdapter(private var categoryDetailArrayList: ArrayList<HomeCategoriesArrayModel>, private var mContext: Context,private var filepath:String) :
 
@@ -28,6 +29,10 @@ class CategoryRecyclerAdapter(private var categoryDetailArrayList: ArrayList<Hom
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.adapter_category_recycler, parent, false)
         return MyViewHolder(itemView)
+    }
+    fun filterList(filterdNames: ArrayList<HomeCategoriesArrayModel>) {
+        this.categoryDetailArrayList = filterdNames
+        notifyDataSetChanged()
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = categoryDetailArrayList[position]

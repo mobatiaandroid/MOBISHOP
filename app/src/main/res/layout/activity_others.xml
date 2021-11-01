@@ -19,17 +19,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:src="@drawable/home_active" />
+            android:src="@drawable/home" />
 
         <ImageView
-            android:id="@+id/cartImg"
+            android:id="@+id/categoryImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:src="@drawable/cart" />
 
         <ImageView
-            android:id="@+id/categoryImg"
+            android:id="@+id/cartImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"

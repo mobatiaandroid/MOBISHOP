@@ -1,19 +1,28 @@
 package com.mobatia.mobishop.home
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobatia.mobishop.R
+import com.mobatia.mobishop.constants.OnItemClickListener
+import com.mobatia.mobishop.constants.addOnItemClickListener
 import com.mobatia.mobishop.home.adapter.OtherRecyclerAdapter
 import com.mobatia.mobishop.home.adapter.ProfileRecyclerAdapter
 import com.mobatia.mobishop.home.model.HomeCategoriesArrayModel
+import com.mobatia.mobishop.others.AboutMobishopActivity
+import com.mobatia.mobishop.others.ContactUsActivity
+import com.mobatia.mobishop.others.TermsOfServiceActivity
+import com.mobatia.mobishop.profile.AccountDetailsActvitiy
 
 class OtherActivity : AppCompatActivity() {
 
@@ -88,6 +97,67 @@ class OtherActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
+        otherRecycler.addOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClicked(position: Int, view: View) {
+
+                if(position==0)
+                {
+                    //About Mobishop
+                    startActivity(Intent(mContext, AboutMobishopActivity::class.java))
+                }
+                else if (position==1)
+                {
+                    //Terms of Service
+                    startActivity(Intent(mContext, TermsOfServiceActivity::class.java))
+                }
+                else if (position==2)
+                {
+                    // Notification
+                    Toast.makeText(mContext,"Comming Soon!!!", Toast.LENGTH_SHORT).show()
+                }
+                else if (position==3)
+                {
+
+                    // Contact us
+                    startActivity(Intent(mContext, ContactUsActivity::class.java))
+
+                }
+                else
+                {
+                    // Help
+
+                    val deliveryAddress =
+                        arrayOf("info@mobatia.com")
+                    val emailIntent = Intent(Intent.ACTION_SEND)
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, deliveryAddress)
+                    emailIntent.type = "text/plain"
+                    emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    val pm: PackageManager = mContext.packageManager
+                    val activityList = pm.queryIntentActivities(
+                        emailIntent, 0
+                    )
+                    println("packge size" + activityList.size)
+                    for (app in activityList) {
+                        println("packge name" + app.activityInfo.name)
+                        if (app.activityInfo.name.contains("com.google.android.gm")) {
+                            val activity = app.activityInfo
+                            val name = ComponentName(
+                                activity.applicationInfo.packageName, activity.name
+                            )
+                            emailIntent.addCategory(Intent.CATEGORY_LAUNCHER)
+                            emailIntent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK
+                                    or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
+                            emailIntent.component = name
+                            mContext.startActivity(emailIntent)
+                            break
+                        }
+                    }
+
+                }
+            }
+
+        })
+
     }
 
 
@@ -95,7 +165,6 @@ class OtherActivity : AppCompatActivity() {
         super.onBackPressed()
         val intent = Intent(mContext, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 

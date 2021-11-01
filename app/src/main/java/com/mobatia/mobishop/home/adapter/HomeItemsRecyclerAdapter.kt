@@ -26,6 +26,11 @@ class HomeItemsRecyclerAdapter (private var categoryDetailArrayList: ArrayList<H
         var actualPriceTxt: TextView = view.findViewById(R.id.actualPriceTxt)
         var offerPriceTxt: TextView = view.findViewById(R.id.offerPriceTxt)
     }
+
+    fun filterList(filterdNames: ArrayList<HomeProductsArrayModel>) {
+        this.categoryDetailArrayList = filterdNames
+        notifyDataSetChanged()
+    }
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -46,8 +51,8 @@ class HomeItemsRecyclerAdapter (private var categoryDetailArrayList: ArrayList<H
             .into(holder.itemImg)
         holder.itemNameTxt.setText(categoryDetailArrayList.get(position).name)
         holder.slugNameTxt.setText(categoryDetailArrayList.get(position).category_name)
-        holder.actualPriceTxt.setText("₹"+categoryDetailArrayList.get(position).sale_price)
-        holder.offerPriceTxt.setText("₹"+categoryDetailArrayList.get(position).actual_price)
+        holder.actualPriceTxt.setText("₹"+categoryDetailArrayList.get(position).actual_price)
+        holder.offerPriceTxt.setText("₹"+categoryDetailArrayList.get(position).sale_price)
         //₹
     }
     override fun getItemCount(): Int {

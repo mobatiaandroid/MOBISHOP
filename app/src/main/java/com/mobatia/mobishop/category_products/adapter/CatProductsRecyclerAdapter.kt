@@ -27,6 +27,12 @@ class CatProductsRecyclerAdapter (private var productDetailArrayList: ArrayList<
         var actualPriceTxt: TextView = view.findViewById(R.id.actualPriceTxt)
         var offerPriceTxt: TextView = view.findViewById(R.id.offerPriceTxt)
     }
+
+    fun filterList(filterdNames: ArrayList<CatProductsArrayModel>) {
+        this.productDetailArrayList = filterdNames
+        notifyDataSetChanged()
+    }
+
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -47,8 +53,8 @@ class CatProductsRecyclerAdapter (private var productDetailArrayList: ArrayList<
             .into(holder.itemImg)
         holder.itemNameTxt.setText(productDetailArrayList.get(position).name)
         holder.slugNameTxt.setText(productDetailArrayList.get(position).category_name)
-        holder.actualPriceTxt.setText("₹"+productDetailArrayList.get(position).sale_price)
-        holder.offerPriceTxt.setText("₹"+productDetailArrayList.get(position).actual_price)
+        holder.actualPriceTxt.setText("₹"+productDetailArrayList.get(position).actual_price)
+        holder.offerPriceTxt.setText("₹"+productDetailArrayList.get(position).sale_price)
         //₹
     }
     override fun getItemCount(): Int {

@@ -3,7 +3,12 @@
     android:layout_height="match_parent"
     android:background="@color/light_grey"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+<ProgressBar
+    android:id="@+id/progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:layout_centerInParent="true"/>
     <LinearLayout
         android:id="@+id/addressLinear"
         android:layout_width="match_parent"
@@ -19,24 +24,38 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/location"
+                android:src="@drawable/location_home"
                 android:layout_margin="5dp"/>
             <TextView
                 android:id="@+id/cityPinCodeTxt"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
-                android:text="Trivandrum - 695122"/>
+               />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/changePinImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/teal_200"
+                    android:text="change" />
+            </RelativeLayout>
         </LinearLayout>
         <TextView
             android:id="@+id/fullAdressTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Makkey Aikara Puthen veedu amaravila"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:visibility="gone"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/searchLinear"
@@ -44,6 +63,7 @@
         android:layout_height="50dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:background="@drawable/rectangle_with_full_white"
         android:layout_below="@+id/addressLinear"
@@ -64,13 +84,16 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/search"/>
             <EditText
-                android:id="@+id/searchTxt"
+                android:id="@+id/editTextSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:textColorHint="@color/grey"
                 android:textColor="@color/black"
                 android:focusable="true"
+                android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/rectangle_with_full_white"
                 android:hint="@string/search_hint"/>
@@ -92,7 +115,7 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/featureLinear"
@@ -105,17 +128,34 @@
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center_vertical"
-                android:text="@string/category"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/category"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/seeAllTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="See All" />
+
+            </RelativeLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryRecycler"
@@ -125,6 +165,11 @@
                 android:overScrollMode="never"
                 android:scrollbars="horizontal" />
 
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/itemsRecycler"
                 android:layout_width="match_parent"
@@ -133,7 +178,7 @@
                 android:overScrollMode="never"
                 android:scrollbars="vertical" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/featureLinear"
@@ -153,14 +198,14 @@
             android:src="@drawable/home_active" />
 
         <ImageView
-            android:id="@+id/cartImg"
+            android:id="@+id/categoryImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:src="@drawable/cart" />
 
         <ImageView
-            android:id="@+id/categoryImg"
+            android:id="@+id/cartImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"

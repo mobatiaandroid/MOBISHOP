@@ -14,6 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:id="@+id/addToCartLinear"
             android:layout_width="match_parent"
@@ -26,9 +27,10 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/cart_active" />
+                android:src="@drawable/product_detail_cart" />
 
             <TextView
+                android:id="@+id/addtoCartTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -50,59 +52,71 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
 
                     <ImageView
-                        android:id="@+id/productImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:background="@color/white" />
-
-                    <ImageView
+                        android:id="@+id/backImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/add_cart" />
+                        android:src="@drawable/back_button" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+                    <TextView
+                        android:id="@+id/productNameTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
-
+                <ImageView
+                    android:id="@+id/productImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="@color/white" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp">
 
                     <ImageView
                         android:id="@+id/favImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/favourite" />
-
-                    <TextView
-                        android:id="@+id/productNameTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_toLeftOf="@+id/favImg"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/favourite"
+                        android:visibility="gone" />
+
+
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp">
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
 
                     <LinearLayout
+                        android:id="@+id/quantityLinear"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/rectangle_white_with_border_grey"
@@ -127,7 +141,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="12" />
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/addTxt"
@@ -140,6 +154,7 @@
                             android:textColor="@color/teal_200"
                             android:textSize="18sp" />
                     </LinearLayout>
+
 
                     <RelativeLayout
                         android:id="@+id/offerPriceRel"
@@ -215,13 +230,36 @@
 
 
                 <TextView
+                    android:id="@+id/deliveryStataus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="Not Deliverable"
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
+                <TextView
+                    android:id="@+id/deliverTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/light_grey"
+                    android:lineHeight="25sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
                     android:id="@+id/productDescTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/black" />
+                    android:layout_marginRight="15dp"
+                    android:lineHeight="25sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
             </LinearLayout>
         </ScrollView>
 

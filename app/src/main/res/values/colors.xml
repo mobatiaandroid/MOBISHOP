@@ -12,5 +12,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF03DAC5</color>
     <color name="grey">#BDBDBD</color>
+    <color name="red">#ff0006</color>
     <color name="grey_hint">#7C7C7C</color>
+    <color name="proceed_grren">#22B573</color>
 </resources>

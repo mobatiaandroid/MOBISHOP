@@ -13,6 +13,7 @@ data class HomeProductsArrayModel  (
     @SerializedName("name") val name: String,
     @SerializedName("cover_image") val cover_image: String,
     @SerializedName("category_name") val category_name: String,
-    @SerializedName("category_slug") val category_slug: String
+    @SerializedName("category_slug") val category_slug: String,
+    @SerializedName("product_slug") val product_slug: String
 
 )

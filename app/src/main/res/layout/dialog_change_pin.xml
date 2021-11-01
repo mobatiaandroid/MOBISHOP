@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:background="@drawable/rect_curved_white_teal">
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:id="@+id/closeImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/close_grey" />
+
+    <TextView
+        android:id="@+id/confirmTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pin Code"
+        android:gravity="center"
+        android:layout_below="@+id/closeImg"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/descriptionTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Enter your Pin Code"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_below="@+id/confirmTxt" />
+
+    <EditText
+        android:id="@+id/pinCodeEdtTxt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/descriptionTxt"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/rectangle_white_with_border_grey"
+        android:ems="10"
+        android:hint="Pincode"
+        android:inputType="number"
+        android:padding="5dp" />
+
+    <Button
+        android:id="@+id/proceedBtn"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/pinCodeEdtTxt"
+        android:layout_marginStart="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rect_teal"
+        android:text="Proceed"
+        android:textColor="@color/white" />
+</RelativeLayout>

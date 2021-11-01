@@ -25,6 +25,7 @@ class OtherRecyclerAdapter (private var profileArrayList: ArrayList<String>, pri
     RecyclerView.Adapter<OtherRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var itemTxt: TextView = view.findViewById(R.id.itemTxt)
+        var iconImg: ImageView = view.findViewById(R.id.iconImg)
     }
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -35,6 +36,30 @@ class OtherRecyclerAdapter (private var profileArrayList: ArrayList<String>, pri
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = profileArrayList[position]
         holder.itemTxt.setText(list.toString())
+        if(position==0)
+        {
+            holder. iconImg.setImageResource(R.drawable.about_icon)
+        }
+        else if(position==1)
+        {
+            holder. iconImg.setImageResource(R.drawable.about_icon)
+
+        }
+        else if(position==2)
+        {
+            holder. iconImg.setImageResource(R.drawable.notification_icon)
+
+        }
+        else if(position==3)
+        {
+            holder. iconImg.setImageResource(R.drawable.settings_icon)
+
+        }
+        else if(position==4)
+        {
+            holder. iconImg.setImageResource(R.drawable.help_icon)
+
+        }
 
     }
     override fun getItemCount(): Int {

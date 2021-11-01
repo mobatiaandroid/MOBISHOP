@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:background="@drawable/rect_curved_white_teal">
+    <TextView
+        android:id="@+id/confirmTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/descriptionTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_below="@+id/confirmTxt" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:layout_below="@+id/descriptionTxt">
+        <Button
+            android:id="@+id/changeBtn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="Cancel"
+            android:background="@drawable/rectangle_with_white_bacg_teal_border"
+            android:layout_weight="2"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/continueBtn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="Logout"
+            android:background="@drawable/rectangle_with_white_bacg_teal_border"
+            android:layout_weight="2"/>
+    </LinearLayout>
+</RelativeLayout>

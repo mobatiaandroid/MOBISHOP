@@ -36,6 +36,7 @@ class CustomerAddressEditActivity : AppCompatActivity() {
     lateinit var phoneEditTxt: EditText
     lateinit var hmeAddress: ImageView
     lateinit var officeAddress: ImageView
+    lateinit var backImg: ImageView
     var isSelected=false
     var addressType:Int=0
     lateinit var proceedBtn: Button
@@ -66,6 +67,7 @@ class CustomerAddressEditActivity : AppCompatActivity() {
         stateTxt=findViewById(R.id.stateTxt)
         pinTxt=findViewById(R.id.pinTxt)
         phoneTxt=findViewById(R.id.phoneTxt)
+        backImg=findViewById(R.id.backImg)
         val nameval = "<font color=#FF000000>Name</font> <font color=#ff0006>*</font>"
         val addressTxtval = "<font color=#FF000000>Address</font> <font color=#ff0006>*</font>"
         val localityTxtval = "<font color=#FF000000>Locality</font> <font color=#ff0006>*</font>"
@@ -124,7 +126,9 @@ class CustomerAddressEditActivity : AppCompatActivity() {
             isSelected=true
         }
 
-
+        backImg.setOnClickListener(View.OnClickListener {
+            finish()
+        })
         proceedBtn.setOnClickListener(View.OnClickListener {
             if (nameEditTxt.text.trim().toString().equals(""))
             {

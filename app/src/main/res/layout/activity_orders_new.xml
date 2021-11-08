@@ -2,12 +2,6 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,26 +32,24 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:layout_centerInParent="true"
-                android:text="Delivery Address"
+                android:text="My Orders"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/addressRecycler"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/headerRel"
-            android:overScrollMode="never"
-            android:scrollbars="vertical" />
+            android:layout_below="@+id/headerRel">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ordersRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:overScrollMode="never"
+                android:scrollbars="vertical" />
+        </androidx.core.widget.NestedScrollView>
+
     </RelativeLayout>
-    <ImageView
-        android:id="@+id/addAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/add_cart"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"/>
 </RelativeLayout>

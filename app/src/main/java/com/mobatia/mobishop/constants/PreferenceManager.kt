@@ -159,7 +159,17 @@ class PreferenceManager {
             val prefs = context.getSharedPreferences(PREFSNAME, Context.MODE_PRIVATE)
             return prefs.getString("max_cart_items", "")
         }
-
+        /************************* CART COUNT************************/
+        fun setCartCount(context: Context, userName: String?) {
+            val prefs = context.getSharedPreferences(PREFSNAME, Context.MODE_PRIVATE)
+            val editor = prefs.edit()
+            editor.putString("cart_count", userName)
+            editor.apply()
+        }
+        fun getCartCount(context: Context): String? {
+            val prefs = context.getSharedPreferences(PREFSNAME, Context.MODE_PRIVATE)
+            return prefs.getString("cart_count", "")
+        }
 
     }
 

@@ -46,17 +46,21 @@ class HomeActivity : AppCompatActivity() {
     lateinit var productArrayListNew : ArrayList<HomeProductsArrayModel>
     lateinit var categoryRecycler:RecyclerView
     lateinit var itemsRecycler:RecyclerView
-    lateinit var cartImg: ImageView
-    lateinit var categoryImg: ImageView
-    lateinit var profileImg: ImageView
-    lateinit var otherImg: ImageView
-    lateinit var homeImg: ImageView
+    lateinit var cartRel: RelativeLayout
+    lateinit var categoryRel: RelativeLayout
+    lateinit var profileRel: RelativeLayout
+    lateinit var otherRel: RelativeLayout
+    lateinit var homeRel: RelativeLayout
+    lateinit var cartCountRel: RelativeLayout
+    lateinit var cartCountTxt: TextView
     lateinit var changePinImg: TextView
     lateinit var cityPinCodeTxt: TextView
     lateinit var seeAllTxt: TextView
+
     lateinit var editTextSearch: EditText
     lateinit var progress: ProgressBar
     lateinit var pager: ViewPager
+     var cartCount: Int=0
     var itemRecyclerAdapter: HomeItemsRecyclerAdapter? = null
     lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var filePath:String
@@ -71,6 +75,7 @@ class HomeActivity : AppCompatActivity() {
             progress.visibility = View.VISIBLE
             getHomeDetail()
             getstoreSettings()
+            getCart()
         }
         else
         {
@@ -85,17 +90,28 @@ class HomeActivity : AppCompatActivity() {
     fun initUI()
     {
 
-        cartImg=findViewById(R.id.cartImg)
-        categoryImg=findViewById(R.id.categoryImg)
+        cartRel=findViewById(R.id.cartRel)
+        categoryRel=findViewById(R.id.categoryRel)
         categoryRecycler=findViewById(R.id.categoryRecycler)
         itemsRecycler=findViewById(R.id.itemsRecycler)
-        profileImg=findViewById(R.id.profileImg)
-        otherImg=findViewById(R.id.otherImg)
-        homeImg=findViewById(R.id.homeImg)
+        profileRel=findViewById(R.id.profileRel)
+        otherRel=findViewById(R.id.otherRel)
+        homeRel=findViewById(R.id.homeRel)
         seeAllTxt=findViewById(R.id.seeAllTxt)
         editTextSearch=findViewById(R.id.editTextSearch)
         cityPinCodeTxt=findViewById(R.id.cityPinCodeTxt)
         changePinImg=findViewById(R.id.changePinImg)
+        cartCountRel=findViewById(R.id.cartCountRel)
+        cartCountTxt=findViewById(R.id.cartCountTxt)
+        if (PreferenceManager.getCartCount(mContext).equals("0"))
+        {
+            cartCountRel.visibility=View.GONE
+
+        }
+        else{
+            cartCountRel.visibility=View.VISIBLE
+            cartCountTxt.setText(PreferenceManager.getCartCount(mContext))
+        }
 
         pager=findViewById(R.id.pager)
         val layoutManager = LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false)
@@ -127,7 +143,6 @@ class HomeActivity : AppCompatActivity() {
                 intent.putExtra("cat_slug",categoryArrayList.get(position).slug)
                 intent.putExtra("cat_name",categoryArrayList.get(position).name)
                 intent.putExtra("file_path",filePath)
-
                 startActivity(intent)
             }
 
@@ -144,19 +159,17 @@ class HomeActivity : AppCompatActivity() {
 
         })
 
-        cartImg.setOnClickListener(View.OnClickListener {
+        cartRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, CartActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        categoryImg.setOnClickListener(View.OnClickListener {
+        categoryRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, CategoryActivtiy::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
@@ -165,23 +178,20 @@ class HomeActivity : AppCompatActivity() {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, CategoryActivtiy::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        profileImg.setOnClickListener(View.OnClickListener {
+        profileRel .setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, ProfileActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        otherImg.setOnClickListener(View.OnClickListener {
+        otherRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, OtherActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
@@ -292,7 +302,33 @@ class HomeActivity : AppCompatActivity() {
         })
 
     }
+    private fun getCart()
+    {
+        val  call: Call<CartCountResponseModel> = ApiClient.getClient.cartCount("Bearer "+PreferenceManager.getToken(mContext))
+        call.enqueue(object :retrofit2.Callback<CartCountResponseModel>{
+            override fun onFailure(call: Call<CartCountResponseModel>, t: Throwable)
+            {
 
+            }
+            override fun onResponse(call: Call<CartCountResponseModel>, response: Response<CartCountResponseModel>)
+            {
+
+                cartCount=response.body()!!.cart_count
+                PreferenceManager.setCartCount(mContext,cartCount.toString())
+                if (cartCount==0)
+                {
+                    cartCountRel.visibility=View.GONE
+
+                }
+                else{
+                    cartCountRel.visibility=View.VISIBLE
+                    cartCountTxt.setText(cartCount.toString())
+                }
+            }
+
+        })
+
+    }
 
     private fun getPonCodeApi(pincode:String,pinCodeTxt:TextView,dialog: Dialog,progress:ProgressBar)
     {

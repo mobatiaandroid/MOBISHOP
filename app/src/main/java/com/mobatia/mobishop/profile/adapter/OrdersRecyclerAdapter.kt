@@ -1,5 +1,6 @@
 package com.mobatia.mobishop.profile.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,15 +17,18 @@ import com.mobatia.mobishop.R
 import com.mobatia.mobishop.home.adapter.HomeItemsRecyclerAdapter
 import com.mobatia.mobishop.home.model.HomeProductsArrayModel
 import com.mobatia.mobishop.profile.model.orders.OrdersItemModel
+import com.mobatia.mobishop.profile.model.orders_new.OrderItemDetailsModel
+import java.text.DecimalFormat
 
-class OrdersRecyclerAdapter  (private var ordersArrayList: ArrayList<OrdersItemModel>, private var mContext: Context, private var filepath:String) :
+class OrdersRecyclerAdapter  (private var ordersArrayList: ArrayList<OrderItemDetailsModel>, private var mContext: Context, private var filepath:String) :
 
     RecyclerView.Adapter<OrdersRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var itemImg: ImageView = view.findViewById(R.id.itemImg)
         var itemNameTxt: TextView = view.findViewById(R.id.itemNameTxt)
         var slugNameTxt: TextView = view.findViewById(R.id.slugNameTxt)
-        var deliveredStatus: TextView = view.findViewById(R.id.deliveredStatus)
+        var qtyTxt: TextView = view.findViewById(R.id.qtyTxt)
+        var priceTxt: TextView = view.findViewById(R.id.priceTxt)
     }
 
 
@@ -34,6 +38,7 @@ class OrdersRecyclerAdapter  (private var ordersArrayList: ArrayList<OrdersItemM
             .inflate(R.layout.adapter_orders_recycler, parent, false)
         return MyViewHolder(itemView)
     }
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = ordersArrayList[position]
         var imagePath=filepath+ordersArrayList.get(position).cover_image
@@ -48,23 +53,15 @@ class OrdersRecyclerAdapter  (private var ordersArrayList: ArrayList<OrdersItemM
             .into(holder.itemImg)
 
         holder.itemNameTxt.setText(ordersArrayList.get(position).product_name)
-        holder.slugNameTxt.setText(ordersArrayList.get(position).product_slug)
-        if (ordersArrayList.get(position).item_status.equals("1"))
-        {
-            holder.deliveredStatus.setText("Confirmed")
-        }
-        else if (ordersArrayList.get(position).item_status.equals("2"))
-        {
-            holder.deliveredStatus.setText("Shipped")
-        }
-        else if (ordersArrayList.get(position).item_status.equals("3"))
-        {
-            holder.deliveredStatus.setText("Out for Delivery")
-        }
-        else if (ordersArrayList.get(position).item_status.equals("4"))
-        {
-            holder.deliveredStatus.setText("Delivered")
-        }
+        holder.slugNameTxt.setText(ordersArrayList.get(position).category_slug)
+        holder.qtyTxt.setText("Qty : "+ordersArrayList.get(position).quantity.toString())
+        var price=ordersArrayList.get(position).product_price.toFloat()
+        var total=price*ordersArrayList.get(position).quantity
+        val dec = DecimalFormat("#,###.00")
+        var ppTot=dec.format(total)
+        holder.priceTxt.setText("₹ "+ppTot.toString())
+
+
 
 
 

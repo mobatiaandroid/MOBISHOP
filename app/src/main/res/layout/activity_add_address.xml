@@ -2,6 +2,14 @@
 <RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/backImg"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/back_button" />
     <ImageView
         android:id="@+id/logoImg"
         android:layout_width="wrap_content"
@@ -9,6 +17,7 @@
         android:src="@drawable/ic_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
+
     <TextView
         android:id="@+id/deliveryTxt"
         android:layout_width="match_parent"

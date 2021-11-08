@@ -109,6 +109,12 @@
         <activity android:name=".others.ContactUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".profile.OrdersActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".profile.OrderDetailActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

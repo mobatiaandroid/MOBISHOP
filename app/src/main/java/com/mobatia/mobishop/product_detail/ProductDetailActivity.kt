@@ -18,10 +18,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.mobatia.mobishop.R
 import com.mobatia.mobishop.constants.ApiClient
-import com.mobatia.mobishop.home.CategoryActivtiy
-import com.mobatia.mobishop.home.HomeActivity
-import com.mobatia.mobishop.home.OtherActivity
-import com.mobatia.mobishop.home.ProfileActivity
 import com.mobatia.mobishop.home.adapter.CartItemRecyclerAdapter
 import com.mobatia.mobishop.home.model.CartItemsModel
 import com.mobatia.mobishop.home.model.CartResponseModel
@@ -32,6 +28,7 @@ import retrofit2.Response
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.mobatia.mobishop.constants.PreferenceManager
+import com.mobatia.mobishop.home.*
 import com.mobatia.mobishop.home.model.ManageCartApiModel
 import com.mobatia.mobishop.product_detail.model.AddtoCartApiModel
 import com.mobatia.mobishop.product_detail.model.CartApiModel
@@ -94,6 +91,7 @@ class ProductDetailActivity : AppCompatActivity() {
         quantityLinear=findViewById(R.id.quantityLinear)
         addtoCartTxt=findViewById(R.id.addtoCartTxt)
         deliverTo=findViewById(R.id.deliverTo)
+        addtoCartTxt.setText("ADD TO CART")
         product_qty="1"
         if (PreferenceManager.getIsDeliverable(mContext))
         {
@@ -118,61 +116,20 @@ class ProductDetailActivity : AppCompatActivity() {
             finish()
         })
         addToCartLinear.setOnClickListener(View.OnClickListener {
-          var OWNDATA="cart:[{product_id:"+id+",product_qty:"+product_qty+"}]"
-          var model=ManageCartApiModel("add",id.toString(),product_qty)
-            callAddToCartApi(model)
-//            if (cartArrayListnew.size>0)
-//            {
-//                Log.e("LOOP ","WORKS")
-//                cartArrayListCopy=ArrayList()
-//                for (i in 0.. cartArrayListnew.size-1)
-//                {
-//                    var model= CartApiModel()
-//                    model.product_id=cartArrayListnew.get(i).id
-//                    model.product_qty=cartArrayListnew.get(i).quantity.toString()
-//                    cartArrayListCopy.add(model)
-//                }
-//                if(cartArrayListCopy.size>0)
-//                {
-//                    var isFound:Boolean=false
-//                    var pos:Int=-1
-//                    for (j in 0.. cartArrayListCopy.size-1)
-//                    {
-//                        if (cartArrayListCopy.get(j).product_id==id)
-//                        {
-//                            isFound=true
-//                            pos=j
-//                        }
-//                    }
-//                    if (isFound)
-//                    {
-//                        cartArrayListCopy.get(pos).product_qty=product_qty
-//                        var mModel=AddtoCartApiModel(cartArrayListCopy)
-//                        callAddToCartApi(mModel)
-//                    }
-//                    else{
-//                        var model=CartApiModel()
-//                        model.product_id=id
-//                        model.product_qty=product_qty
-//                        cartArrayListCopy.add(model)
-//                        var mModel=AddtoCartApiModel(cartArrayListCopy)
-//                        callAddToCartApi(mModel)
-//                    }
-//
-//                }
-//
-//
-//            }
-//            else{
-//                cartArrayList=ArrayList()
-//                var model=CartApiModel()
-//                model.product_id=id
-//                model.product_qty=product_qty
-//                cartArrayList.add(model)
-//                var mModel=AddtoCartApiModel(cartArrayList)
-//
-//                callAddToCartApi(mModel)
-//            }
+
+            if (addtoCartTxt.text.toString().equals("ADD TO CART"))
+            {
+                var OWNDATA="cart:[{product_id:"+id+",product_qty:"+product_qty+"}]"
+                var model=ManageCartApiModel("add",id.toString(),product_qty)
+                callAddToCartApi(model)
+            }
+            else{
+
+                val intent = Intent(mContext, CartActivity::class.java)
+                intent.putExtra("file_path",filePath)
+                startActivity(intent)
+            }
+
 
         })
 
@@ -265,6 +222,7 @@ class ProductDetailActivity : AppCompatActivity() {
                     if(response.body()!!.status.equals("success"))
                     {
 
+                        addtoCartTxt.setText("GO TO CART")
                         Toast.makeText(mContext,"Item has been added to cart", Toast.LENGTH_SHORT).show()
 
                     }

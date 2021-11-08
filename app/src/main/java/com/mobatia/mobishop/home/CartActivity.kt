@@ -1,11 +1,15 @@
 package com.mobatia.mobishop.home
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,6 +28,7 @@ import com.mobatia.mobishop.home.adapter.CartItemRecyclerAdapter
 import com.mobatia.mobishop.home.adapter.CategoryRecyclerAdapter
 import com.mobatia.mobishop.home.adapter.HomeItemsRecyclerAdapter
 import com.mobatia.mobishop.home.model.*
+import com.mobatia.mobishop.profile.OrdersActivityNew
 import com.mobatia.mobishop.profile.adapter.AddressRecyclerAdapter
 import com.mobatia.mobishop.signup.SignUpLocationActivity
 import retrofit2.Call
@@ -33,17 +38,18 @@ import java.text.DecimalFormat
 class CartActivity : AppCompatActivity() {
 
     lateinit var mContext: Context
-    lateinit var cartImg: ImageView
-    lateinit var categoryImg: ImageView
-    lateinit var profileImg: ImageView
-    lateinit var otherImg: ImageView
-    lateinit var homeImg: ImageView
+    lateinit var cartRel: RelativeLayout
+    lateinit var categoryRel: RelativeLayout
+    lateinit var profileRel: RelativeLayout
+    lateinit var otherRel: RelativeLayout
+    lateinit var homeRel: RelativeLayout
     lateinit var totalAmountTxt: TextView
     lateinit var changeTxt: TextView
     lateinit var addressTxt: TextView
     lateinit var nameTxt: TextView
     lateinit var phoneNumberTxt: TextView
     lateinit var proceedLinear: RelativeLayout
+    lateinit var emptyRel: RelativeLayout
     lateinit var addressRel: RelativeLayout
     lateinit var progress: ProgressBar
     lateinit var categoryArrayList:ArrayList<HomeCategoriesArrayModel>
@@ -53,6 +59,9 @@ class CartActivity : AppCompatActivity() {
     lateinit var cartRecycler:RecyclerView
     var addressSize:Int=0
     var addressId:Int=0
+    lateinit var cartCountRel: RelativeLayout
+    lateinit var cartCountTxt: TextView
+    var cartCount: Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
@@ -62,6 +71,7 @@ class CartActivity : AppCompatActivity() {
             progress.visibility = View.VISIBLE
             callAddressDetailApi()
             callCartDetails()
+            getCart()
         }
         else
         {
@@ -75,12 +85,11 @@ class CartActivity : AppCompatActivity() {
     fun initUI()
     {
         filePath = intent.getStringExtra("file_path").toString()
-        categoryArrayList= intent.getSerializableExtra("cat_details") as ArrayList<HomeCategoriesArrayModel>
-        cartImg=findViewById(R.id.cartImg)
-        categoryImg=findViewById(R.id.categoryImg)
-        profileImg=findViewById(R.id.profileImg)
-        otherImg=findViewById(R.id.otherImg)
-        homeImg=findViewById(R.id.homeImg)
+        cartRel=findViewById(R.id.cartRel)
+        categoryRel=findViewById(R.id.categoryRel)
+        profileRel=findViewById(R.id.profileRel)
+        otherRel=findViewById(R.id.otherRel)
+        homeRel=findViewById(R.id.homeRel)
         totalAmountTxt=findViewById(R.id.totalAmountTxt)
         cartRecycler=findViewById(R.id.cartRecycler)
         proceedLinear=findViewById(R.id.proceedLinear)
@@ -90,34 +99,42 @@ class CartActivity : AppCompatActivity() {
         nameTxt=findViewById(R.id.nameTxt)
         progress=findViewById(R.id.progress)
         phoneNumberTxt=findViewById(R.id.phoneNumberTxt)
+        emptyRel=findViewById(R.id.emptyRel)
         var linearLayoutManager = LinearLayoutManager(mContext)
         cartRecycler.layoutManager = linearLayoutManager
+        cartCountRel=findViewById(R.id.cartCountRel)
+        cartCountTxt=findViewById(R.id.cartCountTxt)
+        if (PreferenceManager.getCartCount(mContext).equals("0"))
+        {
+            cartCountRel.visibility=View.GONE
 
-        categoryImg.setOnClickListener(View.OnClickListener {
+        }
+        else{
+            cartCountRel.visibility=View.VISIBLE
+            cartCountTxt.setText(PreferenceManager.getCartCount(mContext))
+        }
+        categoryRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, CategoryActivtiy::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        profileImg.setOnClickListener(View.OnClickListener {
+        profileRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, ProfileActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        otherImg.setOnClickListener(View.OnClickListener {
+        otherRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, OtherActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        homeImg.setOnClickListener(View.OnClickListener {
+        homeRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
             val intent = Intent(mContext, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -284,14 +301,16 @@ class CartActivity : AppCompatActivity() {
                         totalAmountTxt.setText("  Place Order ₹ "+pp.toString()+"  ")
                         cartRecycler.visibility=View.VISIBLE
                         proceedLinear.visibility=View.VISIBLE
-                        val cartAdapter = CartItemRecyclerAdapter(cartArrayList,mContext,filePath,totalAmountTxt,totalAmt,addressRel,proceedLinear)
+                        emptyRel.visibility=View.GONE
+                        val cartAdapter = CartItemRecyclerAdapter(cartArrayList,mContext,filePath,totalAmountTxt,totalAmt,addressRel,proceedLinear,emptyRel,cartCountRel,cartCountTxt)
                         cartRecycler.setAdapter(cartAdapter)
                     }
                     else
                     {
                         proceedLinear.visibility=View.GONE
                         addressRel.visibility=View.GONE
-                        Toast.makeText(mContext,"No items in your cart", Toast.LENGTH_SHORT).show()
+                        emptyRel.visibility=View.VISIBLE
+                     //   Toast.makeText(mContext,"No items in your cart", Toast.LENGTH_SHORT).show()
 
                     }
 
@@ -459,7 +478,19 @@ class CartActivity : AppCompatActivity() {
                         cartRecycler.visibility=View.GONE
                         addressRel.visibility=View.GONE
                         proceedLinear.visibility=View.GONE
-                        Toast.makeText(mContext,"Your Order has been successfully placed, monitor your order details to know your order status", Toast.LENGTH_SHORT).show()
+                        emptyRel.visibility=View.VISIBLE
+                        PreferenceManager.setCartCount(mContext,"0")
+                        if (PreferenceManager.getCartCount(mContext).equals("0"))
+                        {
+                            cartCountRel.visibility=View.GONE
+
+                        }
+                        else{
+                            cartCountRel.visibility=View.VISIBLE
+                            cartCountTxt.setText(PreferenceManager.getCartCount(mContext))
+                        }
+                        showOrderConfirmationDialog()
+                        //Toast.makeText(mContext,"Your Order has been successfully placed, monitor your order details to know your order status", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -496,10 +527,60 @@ class CartActivity : AppCompatActivity() {
 
     }
 
+    private fun getCart()
+    {
+        val  call: Call<CartCountResponseModel> = ApiClient.getClient.cartCount("Bearer "+PreferenceManager.getToken(mContext))
+        call.enqueue(object :retrofit2.Callback<CartCountResponseModel>{
+            override fun onFailure(call: Call<CartCountResponseModel>, t: Throwable)
+            {
+
+            }
+            override fun onResponse(call: Call<CartCountResponseModel>, response: Response<CartCountResponseModel>)
+            {
+
+                cartCount=response.body()!!.cart_count
+                PreferenceManager.setCartCount(mContext,cartCount.toString())
+                if (cartCount==0)
+                {
+                    cartCountRel.visibility=View.GONE
+
+                }
+                else{
+                    cartCountRel.visibility=View.VISIBLE
+                    cartCountTxt.setText(cartCount.toString())
+                }
+            }
+
+        })
+
+    }
+
+
     override fun onResume() {
         super.onResume()
         addrressArrayList= ArrayList()
         callAddressDetailApi()
     }
+    private fun showOrderConfirmationDialog() {
+        val dialog = Dialog(mContext)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.dialog_order_confirmation)
+        val descriptionTxt = dialog.findViewById(R.id.descriptionTxt) as TextView
+        descriptionTxt.text = "Your Order has been successfully placed, monitor your order details to know your order status"
+        val changeBtn = dialog.findViewById(R.id.changeBtn) as Button
+        val continueBtn = dialog.findViewById(R.id.continueBtn) as Button
+        changeBtn.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+        })
+        continueBtn.setOnClickListener(View.OnClickListener {
 
+            startActivity(Intent(mContext, OrdersActivityNew::class.java))
+            dialog.dismiss()
+            //callLogouApi(dialog)
+        })
+        dialog.show()
+
+    }
 }

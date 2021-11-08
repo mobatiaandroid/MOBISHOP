@@ -9,51 +9,73 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobatia.mobishop.R
+import com.mobatia.mobishop.constants.ApiClient
 import com.mobatia.mobishop.constants.OnItemClickListener
+import com.mobatia.mobishop.constants.PreferenceManager
 import com.mobatia.mobishop.constants.addOnItemClickListener
 import com.mobatia.mobishop.home.adapter.OtherRecyclerAdapter
 import com.mobatia.mobishop.home.adapter.ProfileRecyclerAdapter
+import com.mobatia.mobishop.home.model.CartCountResponseModel
 import com.mobatia.mobishop.home.model.HomeCategoriesArrayModel
 import com.mobatia.mobishop.others.AboutMobishopActivity
 import com.mobatia.mobishop.others.ContactUsActivity
 import com.mobatia.mobishop.others.TermsOfServiceActivity
 import com.mobatia.mobishop.profile.AccountDetailsActvitiy
+import retrofit2.Call
+import retrofit2.Response
 
 class OtherActivity : AppCompatActivity() {
 
     lateinit var mContext: Context
-    lateinit var cartImg: ImageView
-    lateinit var categoryImg: ImageView
-    lateinit var profileImg: ImageView
-    lateinit var otherImg: ImageView
-    lateinit var homeImg: ImageView
+    lateinit var cartRel: RelativeLayout
+    lateinit var categoryRel: RelativeLayout
+    lateinit var profileRel: RelativeLayout
+    lateinit var otherRel: RelativeLayout
+    lateinit var homeRel: RelativeLayout
     lateinit var categoryArrayList:ArrayList<HomeCategoriesArrayModel>
     lateinit var filePath:String
     lateinit var otherRecycler: RecyclerView
     lateinit var otherArrayList:ArrayList<String>
+    lateinit var cartCountRel: RelativeLayout
+    lateinit var cartCountTxt: TextView
+    var cartCount: Int=0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_others)
         mContext = this
         initUI()
+        getCart()
     }
 
     @SuppressLint("ClickableViewAccessibility")
     fun initUI()
     {
-        categoryArrayList= intent.getSerializableExtra("cat_details") as ArrayList<HomeCategoriesArrayModel>
         filePath = intent.getStringExtra("file_path").toString()
-        cartImg=findViewById(R.id.cartImg)
-        categoryImg=findViewById(R.id.categoryImg)
-        profileImg=findViewById(R.id.profileImg)
-        otherImg=findViewById(R.id.otherImg)
-        homeImg=findViewById(R.id.homeImg)
+        cartRel=findViewById(R.id.cartRel)
+        categoryRel=findViewById(R.id.categoryRel)
+        profileRel=findViewById(R.id.profileRel)
+        otherRel=findViewById(R.id.otherRel)
+        homeRel=findViewById(R.id.homeRel)
         otherRecycler=findViewById(R.id.otherRecycler)
+        cartCountRel=findViewById(R.id.cartCountRel)
+        cartCountTxt=findViewById(R.id.cartCountTxt)
+        if (PreferenceManager.getCartCount(mContext).equals("0"))
+        {
+            cartCountRel.visibility=View.GONE
+
+        }
+        else{
+            cartCountRel.visibility=View.VISIBLE
+            cartCountTxt.setText(PreferenceManager.getCartCount(mContext))
+        }
         var linearLayoutManager = LinearLayoutManager(mContext)
         otherRecycler.layoutManager = linearLayoutManager
         otherArrayList= ArrayList()
@@ -64,32 +86,29 @@ class OtherActivity : AppCompatActivity() {
         otherArrayList.add("Help")
         val otherAdapter = OtherRecyclerAdapter(otherArrayList,mContext)
         otherRecycler.setAdapter(otherAdapter)
-        cartImg.setOnClickListener(View.OnClickListener {
+        cartRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS Cart")
             val intent = Intent(mContext, CartActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        categoryImg.setOnClickListener(View.OnClickListener {
+        categoryRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS CAT")
             val intent = Intent(mContext, CategoryActivtiy::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
-        profileImg.setOnClickListener(View.OnClickListener {
+        profileRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS Prof")
             val intent = Intent(mContext, ProfileActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-            intent.putExtra("cat_details",categoryArrayList)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
 
-        homeImg.setOnClickListener(View.OnClickListener {
+        homeRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS Home")
             val intent = Intent(mContext, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -167,5 +186,31 @@ class OtherActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivity(intent)
     }
+    private fun getCart()
+    {
+        val  call: Call<CartCountResponseModel> = ApiClient.getClient.cartCount("Bearer "+ PreferenceManager.getToken(mContext))
+        call.enqueue(object :retrofit2.Callback<CartCountResponseModel>{
+            override fun onFailure(call: Call<CartCountResponseModel>, t: Throwable)
+            {
 
+            }
+            override fun onResponse(call: Call<CartCountResponseModel>, response: Response<CartCountResponseModel>)
+            {
+
+                cartCount=response.body()!!.cart_count
+                PreferenceManager.setCartCount(mContext,cartCount.toString())
+                if (cartCount==0)
+                {
+                    cartCountRel.visibility=View.GONE
+
+                }
+                else{
+                    cartCountRel.visibility=View.VISIBLE
+                    cartCountTxt.setText(cartCount.toString())
+                }
+            }
+
+        })
+
+    }
 }

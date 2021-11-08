@@ -23,7 +23,7 @@ import retrofit2.Response
 import java.text.DecimalFormat
 
 lateinit var cartArrayList:ArrayList<CartApiModel>
-class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartItemsModel>, private var mContext: Context, private var filepath:String,private var totalAmountTxt:TextView,private var totalAmt:Double,private var addressRel:RelativeLayout,private var proceedLinear:RelativeLayout) :
+class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartItemsModel>, private var mContext: Context, private var filepath:String,private var totalAmountTxt:TextView,private var totalAmt:Double,private var addressRel:RelativeLayout,private var proceedLinear:RelativeLayout,private var emptyRel:RelativeLayout,private var cartCountRel:RelativeLayout,private var cartCountTxt:TextView) :
 
     RecyclerView.Adapter<CartItemRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -162,14 +162,32 @@ class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartIt
             {
 
                 cartDetailArrayList.removeAt(pos)
+                var count=PreferenceManager.getCartCount(mContext)!!.toInt()
+                if (count!=0)
+                {
+                    count=count-1
+                    PreferenceManager.setCartCount(mContext,count.toString())
+                }
+                if (PreferenceManager.getCartCount(mContext).equals("0"))
+                {
+                    cartCountRel.visibility=View.GONE
+
+                }
+                else{
+                    cartCountRel.visibility=View.VISIBLE
+                    cartCountTxt.setText(PreferenceManager.getCartCount(mContext))
+                }
+
 
                 if(cartDetailArrayList.size==0)
                 {
-                    Toast.makeText(mContext,"No items in your cart", Toast.LENGTH_SHORT).show()
+                 //   Toast.makeText(mContext,"No items in your cart", Toast.LENGTH_SHORT).show()
                     addressRel.visibility=View.GONE
                     proceedLinear.visibility=View.GONE
+                    emptyRel.visibility=View.VISIBLE
                 }
                 else{
+                    emptyRel.visibility=View.GONE
                     var tot:Double=00.00
                     for (i in 0..cartDetailArrayList.size-1)
                     {

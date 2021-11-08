@@ -28,6 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+
+
                     <ImageView
                         android:id="@+id/productImg"
                         android:layout_width="match_parent"
@@ -36,11 +38,12 @@
 
                     <ImageView
                         android:id="@+id/backImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:src="@drawable/back_button" />
+
                 </RelativeLayout>
 
 
@@ -75,6 +78,47 @@
                         android:textSize="14sp" />
 
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ReferenceLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black"
+                        android:text="Reference Number"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text=":"/>
+                    <TextView
+                        android:id="@+id/referenceTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="@color/black"
+                        android:layout_marginRight="5dp"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/grey"/>
+
                 <LinearLayout
                     android:id="@+id/orderStatusLinear"
                     android:layout_width="match_parent"

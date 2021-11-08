@@ -14,6 +14,7 @@ import com.mobatia.mobishop.product_detail.model.ProductDetailResponse
 import com.mobatia.mobishop.profile.model.order_details.OrderDetailsApiModel
 import com.mobatia.mobishop.profile.model.order_details.OrderDetailsResponseModel
 import com.mobatia.mobishop.profile.model.orders.OrderResponseModel
+import com.mobatia.mobishop.profile.model.orders_new.GetOrdersResponseModel
 import com.mobatia.mobishop.signup.model.PinCodeResponseModel
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -210,4 +211,20 @@ interface ApiInterface {
         @Body model: ManageCartApiModel,
         @Header("Authorization") token:String
     ): Call<CartResponseModel>
+
+    /*************CART COUNT****************/
+    @GET("api/getCartCount")
+    @Headers("Content-Type: application/json")
+    fun cartCount(
+        @Header("Authorization") token:String
+    ): Call<CartCountResponseModel>
+
+    /*************GET ORDERS****************/
+    @GET("api/getOrders ")
+    @Headers("Content-Type: application/json")
+    fun getOrders(
+        @Header("Authorization") token:String
+    ): Call<GetOrdersResponseModel>
+
+
 }

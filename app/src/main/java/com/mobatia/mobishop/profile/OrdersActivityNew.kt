@@ -1,14 +1,11 @@
 package com.mobatia.mobishop.profile
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,26 +15,25 @@ import com.mobatia.mobishop.constants.ApiClient
 import com.mobatia.mobishop.constants.OnItemClickListener
 import com.mobatia.mobishop.constants.PreferenceManager
 import com.mobatia.mobishop.constants.addOnItemClickListener
-import com.mobatia.mobishop.home.CategoryActivtiy
-import com.mobatia.mobishop.home.adapter.CartItemRecyclerAdapter
-import com.mobatia.mobishop.home.model.PlaceOrderResponseModel
-import com.mobatia.mobishop.login.LoginActivity
 import com.mobatia.mobishop.profile.adapter.OrdersRecyclerAdapter
+import com.mobatia.mobishop.profile.adapter.OrdersRecyclerAdapterNew
 import com.mobatia.mobishop.profile.model.orders.OrderResponseModel
 import com.mobatia.mobishop.profile.model.orders.OrdersItemModel
+import com.mobatia.mobishop.profile.model.orders_new.GetOrdersResponseModel
+import com.mobatia.mobishop.profile.model.orders_new.OrdersModelNew
 import retrofit2.Call
 import retrofit2.Response
 
-class OrdersActivity : AppCompatActivity() {
+class OrdersActivityNew : AppCompatActivity() {
 
     lateinit var mContext: Context
-    lateinit var backImg:ImageView
-    lateinit var ordersRecycler:RecyclerView
+    lateinit var backImg: ImageView
+    lateinit var ordersRecycler: RecyclerView
     lateinit var filePath:String
-    lateinit var ordersArrayList:ArrayList<OrdersItemModel>
+    lateinit var ordersArrayList:ArrayList<OrdersModelNew>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_orders)
+        setContentView(R.layout.activity_orders_new)
         mContext = this
         initUI()
         callOrdersApi()
@@ -57,9 +53,21 @@ class OrdersActivity : AppCompatActivity() {
         ordersRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
 
-                val intent = Intent(mContext, OrderDetailActivity::class.java)
-                intent.putExtra("id",ordersArrayList.get(position).id)
+                val intent = Intent(mContext, OrderDetailActivityNew::class.java)
+                intent.putExtra("ordersList",ordersArrayList.get(position).order_items)
                 intent.putExtra("file_path",filePath)
+                intent.putExtra("reference",ordersArrayList.get(position).order_reference)
+                intent.putExtra("total_product",ordersArrayList.get(position).order_items.size.toString())
+                intent.putExtra("amount",ordersArrayList.get(position).order_total)
+                intent.putExtra("payment_type",ordersArrayList.get(position).payment_type)
+                intent.putExtra("order_status",ordersArrayList.get(position).status)
+                intent.putExtra("name",ordersArrayList.get(position).deliver_address.name)
+                intent.putExtra("address",ordersArrayList.get(position).deliver_address.address)
+                intent.putExtra("locality",ordersArrayList.get(position).deliver_address.locality)
+                intent.putExtra("city",ordersArrayList.get(position).deliver_address.city)
+                intent.putExtra("phone",ordersArrayList.get(position).deliver_address.city)
+                intent.putExtra("pinCode",ordersArrayList.get(position).deliver_address.pincode)
+                intent.putExtra("address_type",ordersArrayList.get(position).deliver_address.address_type)
                 startActivity(intent)
             }
 
@@ -71,13 +79,13 @@ class OrdersActivity : AppCompatActivity() {
     {
         ordersArrayList= ArrayList()
 //        val  call: Call<OrderResponseModel> = ApiClient.getClient.orders("Bearer "+ PreferenceManager.getToken(mContext))
-        val  call: Call<OrderResponseModel> = ApiClient.getClient.orders("Bearer "+ PreferenceManager.getToken(mContext))
-        call.enqueue(object :retrofit2.Callback<OrderResponseModel>{
-            override fun onFailure(call: Call<OrderResponseModel>, t: Throwable)
+        val  call: Call<GetOrdersResponseModel> = ApiClient.getClient.getOrders("Bearer "+ PreferenceManager.getToken(mContext))
+        call.enqueue(object :retrofit2.Callback<GetOrdersResponseModel>{
+            override fun onFailure(call: Call<GetOrdersResponseModel>, t: Throwable)
             {
 
             }
-            override fun onResponse(call: Call<OrderResponseModel>, response: Response<OrderResponseModel>)
+            override fun onResponse(call: Call<GetOrdersResponseModel>, response: Response<GetOrdersResponseModel>)
             {
                 if(response.isSuccessful)
                 {
@@ -89,8 +97,8 @@ class OrdersActivity : AppCompatActivity() {
                         {
                             filePath=response.body()!!.file_path
                             ordersArrayList.addAll(response.body()!!.orders)
-//                            val cartAdapter = OrdersRecyclerAdapter(ordersArrayList,mContext,filePath)
-//                            ordersRecycler.setAdapter(cartAdapter)
+                            val cartAdapter = OrdersRecyclerAdapterNew(ordersArrayList,mContext,filePath)
+                            ordersRecycler.setAdapter(cartAdapter)
                         }
                     }
                     else

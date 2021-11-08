@@ -86,11 +86,8 @@ class AccountDetailsActvitiy : AppCompatActivity() {
             }
             else
             {
-                if (emailEdtTxt.text.trim().toString().equals(""))
+                if (!emailEdtTxt.text.trim().toString().equals(""))
                 {
-                    Toast.makeText(mContext,"Enter your email ID",Toast.LENGTH_SHORT).show()
-                }
-                else{
                     if (isEmailValid(emailEdtTxt.text.trim().toString()))
                     {
                         progress.visibility=View.VISIBLE
@@ -101,6 +98,7 @@ class AccountDetailsActvitiy : AppCompatActivity() {
                         Toast.makeText(mContext,"Enter a valid Email ID",Toast.LENGTH_SHORT).show()
                     }
                 }
+
             }
 
         })

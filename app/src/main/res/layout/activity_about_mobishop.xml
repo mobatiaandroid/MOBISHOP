@@ -21,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/backImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
@@ -45,16 +45,25 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/descTxt"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerRel"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="10dp" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/headerRel">
+
+            <TextView
+                android:id="@+id/descTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:lineHeight="25sp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </ScrollView>
+
     </RelativeLayout>
 
 </RelativeLayout>

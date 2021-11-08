@@ -35,6 +35,7 @@ class AddAddressActivity : AppCompatActivity() {
     lateinit var pinEditTxt:EditText
     lateinit var phoneEditTxt:EditText
     lateinit var hmeAddress: ImageView
+    lateinit var backImg: ImageView
     lateinit var officeAddress: ImageView
     var isSelected=false
     var addressType:Int=0
@@ -58,6 +59,7 @@ class AddAddressActivity : AppCompatActivity() {
         proceedBtn=findViewById(R.id.proceedBtn)
         nameEditTxt=findViewById(R.id.nameEditTxt)
         addressEditTxt=findViewById(R.id.addressEditTxt)
+        backImg=findViewById(R.id.backImg)
         localityEditTxt=findViewById(R.id.localityEditTxt)
         cityEditTxt=findViewById(R.id.cityEditTxt)
         pinEditTxt=findViewById(R.id.pinEditTxt)
@@ -81,7 +83,10 @@ class AddAddressActivity : AppCompatActivity() {
         phoneTxt.setText(Html.fromHtml(phoneTxtVal))
         nameEditTxt.setText(PreferenceManager.getUserName(mContext))
         pinEditTxt.setText(PreferenceManager.getPinCode(mContext))
+        backImg.setOnClickListener(View.OnClickListener {
 
+            finish()
+        })
         hmeAddress.setOnClickListener(View.OnClickListener {
             hmeAddress.setBackgroundResource(R.drawable.rect_teal)
             officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)

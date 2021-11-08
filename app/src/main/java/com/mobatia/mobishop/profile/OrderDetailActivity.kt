@@ -43,6 +43,7 @@ class OrderDetailActivity : AppCompatActivity() {
     lateinit var nameTxt: TextView
     lateinit var priceTxt: TextView
     lateinit var addressTxt: TextView
+    lateinit var referenceTxt: TextView
     lateinit var phoneNumberTxt: TextView
     lateinit var statusTxt: TextView
     lateinit var productRel: RelativeLayout
@@ -74,6 +75,7 @@ class OrderDetailActivity : AppCompatActivity() {
         productRel=findViewById(R.id.productRel)
         paymentTxt=findViewById(R.id.paymentTxt)
         statusTxt=findViewById(R.id.statusTxt)
+        referenceTxt=findViewById(R.id.referenceTxt)
         backImg.setOnClickListener(View.OnClickListener {
             finish()
         })
@@ -148,6 +150,7 @@ class OrderDetailActivity : AppCompatActivity() {
                             {
                                 statusTxt.setText("Delivered")
                             }
+                            referenceTxt.setText(ordersArrayList.get(0).reference)
                             quantityTxt.setText(ordersArrayList.get(0).quantity.toString())
                             priceTxt.setText(ordersArrayList.get(0).product_price.toString())
                             if(ordersArrayList.get(0).payment_type==1)

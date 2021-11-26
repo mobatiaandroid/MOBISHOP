@@ -8,6 +8,9 @@
         <entry key="app/src/main/res/drawable/circle_red.xml" value="0.13489583333333333" />
         <entry key="app/src/main/res/drawable/circle_teal.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/close_grey.xml" value="0.14947916666666666" />
+        <entry key="app/src/main/res/drawable/curve_white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/curve_white_with_teal_border.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/curved_rect.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/empty_cart.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/home.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/drawable/home_fill.xml" value="0.11458333333333333" />
@@ -15,6 +18,7 @@
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.11614583333333334" />
         <entry key="app/src/main/res/drawable/rect_curved_white_teal.xml" value="0.1515625" />
         <entry key="app/src/main/res/drawable/rect_teal.xml" value="0.12604166666666666" />
+        <entry key="app/src/main/res/drawable/rect_top_curve_white.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/drawable/rectangle_white_with_border_grey.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rectangle_with_full_white.xml" value="0.1578125" />
         <entry key="app/src/main/res/drawable/rectangle_with_white_bacg_teal_border.xml" value="0.20729166666666668" />
@@ -23,6 +27,7 @@
         <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_address_activity.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_cart_new.xml" value="0.10364583333333334" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.10572916666666667" />
         <entry key="app/src/main/res/layout/activity_category_products.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.13125" />
@@ -36,6 +41,9 @@
         <entry key="app/src/main/res/layout/activity_others.xml" value="0.10572916666666667" />
         <entry key="app/src/main/res/layout/activity_otp_confirmation.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.116" />
+        <entry key="app/src/main/res/layout/activity_product_detail_button.xml" value="0.1640625" />
+        <entry key="app/src/main/res/layout/activity_product_detail_new.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_product_detail_title.xml" value="0.1640625" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.10572916666666667" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.10989583333333333" />
         <entry key="app/src/main/res/layout/activity_signup_location.xml" value="0.10989583333333333" />

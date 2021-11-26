@@ -31,10 +31,14 @@ import com.mobatia.mobishop.signup.model.PinCodeResponseModel
 import android.text.Editable
 
 import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
 import com.mobatia.mobishop.constants.*
 import com.mobatia.mobishop.home.adapter.BannerViewPagerAdapter
 import com.mobatia.mobishop.home.model.*
+import com.mobatia.mobishop.product_detail.ProductDetailActivityButton
+import com.mobatia.mobishop.product_detail.ProductDetailActivityNew
+import com.mobatia.mobishop.product_detail.ProductDetailActivitytitle
 
 
 class HomeActivity : AppCompatActivity() {
@@ -69,6 +73,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         mContext = this
+       // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         Intent.FLAG_ACTIVITY_CLEAR_TASK
         progress=findViewById(R.id.progress)
         if (CommonClass.isInternetAvailable(mContext)) {
@@ -150,11 +155,12 @@ class HomeActivity : AppCompatActivity() {
         itemsRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
 
-                val intent = Intent(mContext, ProductDetailActivity::class.java)
+                val intent = Intent(mContext, ProductDetailActivitytitle::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                 intent.putExtra("file_path",filePath)
                 intent.putExtra("product_slug",productArrayListNew.get(position).product_slug)
                 startActivity(intent)
+
             }
 
         })

@@ -21,6 +21,7 @@ import com.mobatia.mobishop.constants.OnItemClickListener
 import com.mobatia.mobishop.constants.PreferenceManager
 import com.mobatia.mobishop.constants.addOnItemClickListener
 import com.mobatia.mobishop.product_detail.ProductDetailActivity
+import com.mobatia.mobishop.product_detail.ProductDetailActivitytitle
 import com.mobatia.mobishop.profile.adapter.OrdersRecyclerAdapter
 import com.mobatia.mobishop.profile.model.order_details.OrderDetailsApiModel
 import com.mobatia.mobishop.profile.model.order_details.OrderDetailsModel
@@ -80,7 +81,7 @@ class OrderDetailActivity : AppCompatActivity() {
             finish()
         })
         productRel.setOnClickListener(View.OnClickListener {
-            val intent = Intent(mContext, ProductDetailActivity::class.java)
+            val intent = Intent(mContext, ProductDetailActivitytitle::class.java)
             intent.putExtra("file_path",filePath)
             intent.putExtra("product_slug",ordersArrayList.get(0).product_slug)
             startActivity(intent)

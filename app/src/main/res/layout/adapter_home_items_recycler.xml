@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,115 +9,133 @@
     app:cardBackgroundColor="@android:color/white"
     android:layout_margin="10dp"
     app:cardElevation="8dp">
+</androidx.cardview.widget.CardView>-->
+<RelativeLayout android:layout_height="250dp"
+    android:layout_width="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/offer_bg">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/favRel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp">
+
+        <TextView
+            android:id="@+id/offerTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/favourite"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/itemImg"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@+id/favRel" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/slugNameTxt"
+        android:textSize="12sp"
+        android:layout_below="@+id/itemImg"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/itemNameTxt"
+        android:text="Desc"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:layout_below="@+id/slugNameTxt"
+        android:textColor="@color/black"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/favRel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="30dp"
+        android:layout_below="@+id/itemNameTxt"
+        android:layout_alignParentBottom="true">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:visibility="invisible"
-                android:src="@drawable/favourite" />
-        </RelativeLayout>
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:id="@+id/itemImg"
-            android:scaleType="fitXY"
-            android:layout_below="@+id/favRel"
-            android:src="@drawable/vegetables"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/addCartImg"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/slugNameTxt"
-            android:textSize="12sp"
-            android:layout_below="@+id/itemImg"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/add_cart" />
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/actualPriceTxt"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_marginLeft="8dp"-->
+        <!--                android:gravity="center_vertical"-->
+        <!--                android:textSize="16sp" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/itemNameTxt"
-            android:text="Desc"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:maxLines="2"
-            android:layout_below="@+id/slugNameTxt"
-            android:textColor="@color/black"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="5dp"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/itemNameTxt"
-            android:layout_alignParentBottom="true">
-
-            <ImageView
-                android:id="@+id/addCartImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/add_cart" />
-
-<!--            <TextView-->
-<!--                android:id="@+id/actualPriceTxt"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginLeft="8dp"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:textSize="16sp" />-->
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:id="@+id/actalConst"
-                android:layout_marginTop="10dp"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/actualPriceTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="0dp"
-                    android:layout_height="2dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/actualPriceTxt"
-                    app:layout_constraintEnd_toEndOf="@+id/actualPriceTxt"
-                    app:layout_constraintStart_toStartOf="@+id/actualPriceTxt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@color/grey" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/actalConst"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/offerPriceTxt"
+                android:id="@+id/actualPriceTxt"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_toLeftOf="@+id/addCartImg"
-                android:layout_toRightOf="@+id/actalConst"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="12sp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/actualPriceTxt"
+                app:layout_constraintEnd_toEndOf="@+id/actualPriceTxt"
+                app:layout_constraintStart_toStartOf="@+id/actualPriceTxt"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@color/grey" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/offerPriceTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/addCartImg"
+            android:layout_toRightOf="@+id/actalConst"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

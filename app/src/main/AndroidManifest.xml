@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".home.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.ActionBar"/>
+            android:theme="@style/DemoTheme"/>
         <activity android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
@@ -53,6 +53,15 @@
         <activity android:name=".product_detail.ProductDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".product_detail.ProductDetailActivityButton"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".product_detail.ProductDetailActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".product_detail.ProductDetailActivitytitle"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
         <activity android:name=".login.LoginOtpConfirmationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
@@ -67,7 +76,7 @@
             android:theme="@style/AppTheme.ActionBar"/>
         <activity android:name=".login.NewUserProfileCreateActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.ActionBar"/>
+            android:theme="@style/DemoTheme"/>
 
         <activity android:name=".customer_address.AddAddressActivity"
             android:screenOrientation="portrait"
@@ -113,6 +122,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
         <activity android:name=".profile.OrderDetailActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity android:name=".home.CartActivityNew"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
 

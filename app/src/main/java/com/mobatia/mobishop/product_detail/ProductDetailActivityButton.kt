@@ -4,36 +4,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.mobatia.mobishop.R
 import com.mobatia.mobishop.constants.ApiClient
-import com.mobatia.mobishop.home.adapter.CartItemRecyclerAdapter
+import com.mobatia.mobishop.constants.PreferenceManager
+import com.mobatia.mobishop.home.CartActivity
+import com.mobatia.mobishop.home.model.*
+import com.mobatia.mobishop.product_detail.model.CartApiModel
 import com.mobatia.mobishop.product_detail.model.ProductDetailResponse
 import retrofit2.Call
 import retrofit2.Response
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.mobatia.mobishop.constants.PreferenceManager
-import com.mobatia.mobishop.home.*
-import com.mobatia.mobishop.home.model.*
-import com.mobatia.mobishop.product_detail.model.AddtoCartApiModel
-import com.mobatia.mobishop.product_detail.model.CartApiModel
-import okhttp3.ResponseBody
-import org.json.JSONObject
+import java.text.DecimalFormat
 
-
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivityButton : AppCompatActivity() {
 
     lateinit var mContext: Context
     lateinit var productImg: ImageView
@@ -49,7 +37,8 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var addtoCartTxt: TextView
     lateinit var deliveryStataus: TextView
     lateinit var deliverTo: TextView
-    lateinit var addToCartLinear: LinearLayout
+    lateinit var amountTxt: TextView
+    lateinit var addToCartLinear: RelativeLayout
     lateinit var quantityLinear: LinearLayout
     lateinit var categoryArrayList:ArrayList<HomeCategoriesArrayModel>
     lateinit var cartArrayList:ArrayList<CartApiModel>
@@ -60,10 +49,11 @@ class ProductDetailActivity : AppCompatActivity() {
     var id=0;
     var product_qty="0";
     var qty=1;
+    var pro_price:String=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_detail)
+        setContentView(R.layout.activity_product_detail_button)
         mContext = this
         initUI()
         callProductDetails()
@@ -89,38 +79,40 @@ class ProductDetailActivity : AppCompatActivity() {
         quantityLinear=findViewById(R.id.quantityLinear)
         addtoCartTxt=findViewById(R.id.addtoCartTxt)
         deliverTo=findViewById(R.id.deliverTo)
-        offerTxt=findViewById(R.id.offerTxt)
+        amountTxt=findViewById(R.id.amountTxt)
+        // offerTxt=findViewById(R.id.offerTxt)
         addtoCartTxt.setText("ADD TO CART")
         product_qty="1"
 
         if (PreferenceManager.getIsDeliverable(mContext))
         {
             addToCartLinear.isClickable=true
-            deliveryStataus.visibility=View.GONE
-            addToCartLinear.visibility=View.VISIBLE
-            quantityLinear.visibility=View.VISIBLE
-            deliverTo.visibility=View.GONE
-            deliverTo.setText("Deliver To  : "+PreferenceManager.getPinCode(mContext))
+            deliveryStataus.visibility= View.GONE
+            addToCartLinear.visibility= View.VISIBLE
+            quantityLinear.visibility= View.VISIBLE
+            deliverTo.visibility= View.GONE
+            deliverTo.setText("Deliver To  : "+ PreferenceManager.getPinCode(mContext))
 
 
         }
         else{
             addToCartLinear.isClickable=false
-            deliveryStataus.visibility=View.VISIBLE
-            addToCartLinear.visibility=View.GONE
-            deliverTo.visibility=View.GONE
-            quantityLinear.visibility=View.INVISIBLE
+            deliveryStataus.visibility= View.VISIBLE
+            addToCartLinear.visibility= View.GONE
+            deliverTo.visibility= View.GONE
+            quantityLinear.visibility= View.INVISIBLE
         }
         backImg.setOnClickListener(View.OnClickListener {
 
             finish()
         })
+
         addToCartLinear.setOnClickListener(View.OnClickListener {
 
             if (addtoCartTxt.text.toString().equals("ADD TO CART"))
             {
                 var OWNDATA="cart:[{product_id:"+id+",product_qty:"+product_qty+"}]"
-                var model=ManageCartApiModel("add",id.toString(),product_qty)
+                var model= ManageCartApiModel("add",id.toString(),product_qty)
                 callAddToCartApi(model)
             }
             else{
@@ -137,17 +129,25 @@ class ProductDetailActivity : AppCompatActivity() {
             qty=qty+1
             product_qty=qty.toString()
             countTxt.setText(product_qty)
+            var amount=qty*pro_price.toFloat()
+            val dec = DecimalFormat("#,###.00")
+            var pp=dec.format(amount)
+            amountTxt.setText("₹"+pp.toString())
         })
         minusTxt.setOnClickListener(View.OnClickListener {
-           if(qty==1)
-           {
+            if(qty==1)
+            {
 
-           }
+            }
             else{
-               qty=qty-1
-               product_qty=qty.toString()
-               countTxt.setText(product_qty)
-           }
+                qty=qty-1
+                product_qty=qty.toString()
+                countTxt.setText(product_qty)
+                var amount=qty*pro_price.toFloat()
+                val dec = DecimalFormat("#,###.00")
+                var pp=dec.format(amount)
+                amountTxt.setText("₹"+pp.toString())
+            }
 
         })
 
@@ -156,7 +156,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
     private fun callProductDetails()
     {
-        val  call: Call<ProductDetailResponse> = ApiClient.getClient.productDetail("Bearer "+PreferenceManager.getToken(mContext),product_slug)
+        val  call: Call<ProductDetailResponse> = ApiClient.getClient.productDetail("Bearer "+ PreferenceManager.getToken(mContext),product_slug)
         call.enqueue(object :retrofit2.Callback<ProductDetailResponse>{
             override fun onFailure(call: Call<ProductDetailResponse>, t: Throwable)
             {
@@ -164,11 +164,12 @@ class ProductDetailActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>)
             {
 
-                 id=response.body()!!.product.id
+                id=response.body()!!.product.id
                 var product_slug=response.body()!!.product.product_slug
                 var quantity=response.body()!!.product.quantity
                 var actual_price=response.body()!!.product.actual_price
                 var sale_price=response.body()!!.product.sale_price
+                pro_price=response.body()!!.product.sale_price
                 var name=response.body()!!.product.name
                 var cover_image=response.body()!!.product.cover_image
                 var description=response.body()!!.product.description
@@ -199,23 +200,27 @@ class ProductDetailActivity : AppCompatActivity() {
                 qty=1
                 product_qty=qty.toString()
                 countTxt.setText(product_qty)
-
-                var offerBal=actual_price.toFloat() - sale_price.toFloat()
-                Log.e("OFFER BAL",offerBal.toString())
-                var per=(offerBal*100)/actual_price.toFloat()
-                Log.e("OFFER PER",per.toString())
-                var perInt=per.toInt()
-                Log.e("OFFER PER INT",perInt.toString())
-                offerTxt.setText(perInt.toString()+"% off")
+                var amount=qty*sale_price.toFloat()
+                val dec = DecimalFormat("#,###.00")
+                var pp=dec.format(amount)
+                amountTxt.setText("₹"+pp.toString())
+//
+//                var offerBal=actual_price.toFloat() - sale_price.toFloat()
+//                Log.e("OFFER BAL",offerBal.toString())
+//                var per=(offerBal*100)/actual_price.toFloat()
+//                Log.e("OFFER PER",per.toString())
+//                var perInt=per.toInt()
+//                Log.e("OFFER PER INT",perInt.toString())
+//                offerTxt.setText(perInt.toString()+"% off")
 
             }
 
         })
 
     }
-    private fun callAddToCartApi(mModel:ManageCartApiModel)
+    private fun callAddToCartApi(mModel: ManageCartApiModel)
     {
-        val  call: Call<CartResponseModel> = ApiClient.getClient.manageCart(mModel,"Bearer "+PreferenceManager.getToken(mContext))
+        val  call: Call<CartResponseModel> = ApiClient.getClient.manageCart(mModel,"Bearer "+ PreferenceManager.getToken(mContext))
         call.enqueue(object :retrofit2.Callback<CartResponseModel>{
             override fun onFailure(call: Call<CartResponseModel>, t: Throwable)
             {
@@ -230,7 +235,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
                         addtoCartTxt.setText("GO TO CART")
                         getCart()
-                       // Toast.makeText(mContext,"Item has been added to cart", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext,"Item has been added to cart", Toast.LENGTH_SHORT).show()
 
                     }
                 }
@@ -248,7 +253,7 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun callCartDetails()
     {
         cartArrayListnew= ArrayList()
-        val  call: Call<CartResponseModel> = ApiClient.getClient.cartList("Bearer "+PreferenceManager.getToken(mContext))
+        val  call: Call<CartResponseModel> = ApiClient.getClient.cartList("Bearer "+ PreferenceManager.getToken(mContext))
         call.enqueue(object :retrofit2.Callback<CartResponseModel>{
             override fun onFailure(call: Call<CartResponseModel>, t: Throwable)
             {
@@ -284,7 +289,7 @@ class ProductDetailActivity : AppCompatActivity() {
             override fun onResponse(call: Call<CartCountResponseModel>, response: Response<CartCountResponseModel>)
             {
 
-               var cartCount=response.body()!!.cart_count
+                var cartCount=response.body()!!.cart_count
                 PreferenceManager.setCartCount(mContext,cartCount.toString())
 //                if (cartCount==0)
 //                {

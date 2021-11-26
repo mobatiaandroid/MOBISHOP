@@ -15,4 +15,8 @@
     <color name="red">#ff0006</color>
     <color name="grey_hint">#7C7C7C</color>
     <color name="proceed_grren">#22B573</color>
+    <color name="gradient_start">#5FFBF6</color>
+    <color name="gradient_center">#86E7E4</color>
+    <color name="gradient_end">#E8F4F3</color>
+    <color name="button">#00A99D</color>
 </resources>

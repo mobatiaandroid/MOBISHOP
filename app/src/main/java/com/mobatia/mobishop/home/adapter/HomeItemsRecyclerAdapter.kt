@@ -25,6 +25,7 @@ class HomeItemsRecyclerAdapter (private var categoryDetailArrayList: ArrayList<H
         var slugNameTxt: TextView = view.findViewById(R.id.slugNameTxt)
         var actualPriceTxt: TextView = view.findViewById(R.id.actualPriceTxt)
         var offerPriceTxt: TextView = view.findViewById(R.id.offerPriceTxt)
+        var offerTxt: TextView = view.findViewById(R.id.offerTxt)
     }
 
     fun filterList(filterdNames: ArrayList<HomeProductsArrayModel>) {
@@ -53,6 +54,14 @@ class HomeItemsRecyclerAdapter (private var categoryDetailArrayList: ArrayList<H
         holder.slugNameTxt.setText(categoryDetailArrayList.get(position).category_name)
         holder.actualPriceTxt.setText("₹"+categoryDetailArrayList.get(position).actual_price)
         holder.offerPriceTxt.setText("₹"+categoryDetailArrayList.get(position).sale_price)
+        var offerBal=categoryDetailArrayList.get(position).actual_price.toFloat()-categoryDetailArrayList.get(position).sale_price.toFloat()
+        Log.e("OFFER BAL",offerBal.toString())
+        var per=(offerBal*100)/categoryDetailArrayList.get(position).actual_price.toFloat()
+        Log.e("OFFER PER",per.toString())
+        var perInt=per.toInt()
+        Log.e("OFFER PER INT",perInt.toString())
+        holder.offerTxt.setText(perInt.toString()+"% off")
+
         //₹
     }
     override fun getItemCount(): Int {

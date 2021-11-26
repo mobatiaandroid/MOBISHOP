@@ -113,18 +113,41 @@ class CustomerAddressEditActivity : AppCompatActivity() {
         phoneEditTxt.setText(phone)
         if (address_type==1)
         {
-            hmeAddress.setBackgroundResource(R.drawable.rect_teal)
+            hmeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            hmeAddress.setImageResource(R.drawable.check_teal)
             officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            officeAddress.setImageResource(R.drawable.rect_curved_white_teal)
             addressType=1
             isSelected=true
         }
         else
         {
-            officeAddress.setBackgroundResource(R.drawable.rect_teal)
+            officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            officeAddress.setImageResource(R.drawable.check_teal)
             hmeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            hmeAddress.setImageResource(R.drawable.rect_curved_white_teal)
             addressType=2
             isSelected=true
         }
+
+        hmeAddress.setOnClickListener(View.OnClickListener {
+            hmeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            hmeAddress.setImageResource(R.drawable.check_teal)
+            officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            officeAddress.setImageResource(R.drawable.rect_curved_white_teal)
+            addressType=1
+            isSelected=true
+            addressType=1
+        })
+
+        officeAddress.setOnClickListener(View.OnClickListener {
+            officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            officeAddress.setImageResource(R.drawable.check_teal)
+            hmeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
+            hmeAddress.setImageResource(R.drawable.rect_curved_white_teal)
+            isSelected=true
+            addressType=2
+        })
 
         backImg.setOnClickListener(View.OnClickListener {
             finish()

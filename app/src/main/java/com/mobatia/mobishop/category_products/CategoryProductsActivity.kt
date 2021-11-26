@@ -32,6 +32,7 @@ import com.mobatia.mobishop.home.adapter.HomeItemsRecyclerAdapter
 import com.mobatia.mobishop.home.model.HomeProductsArrayModel
 import com.mobatia.mobishop.home.model.HomeResponseModel
 import com.mobatia.mobishop.product_detail.ProductDetailActivity
+import com.mobatia.mobishop.product_detail.ProductDetailActivitytitle
 import retrofit2.Call
 import retrofit2.Response
 
@@ -99,7 +100,7 @@ class CategoryProductsActivity: AppCompatActivity() {
         itemsRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
 
-                val intent = Intent(mContext, ProductDetailActivity::class.java)
+                val intent = Intent(mContext, ProductDetailActivitytitle::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                 intent.putExtra("file_path",filePath)
                 intent.putExtra("product_slug",productArrayListNew.get(position).product_slug)

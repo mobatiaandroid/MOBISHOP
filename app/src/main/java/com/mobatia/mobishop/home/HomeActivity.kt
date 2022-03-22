@@ -1,44 +1,36 @@
 package com.mobatia.mobishop.home
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.mobatia.mobishop.R
+import com.mobatia.mobishop.category_products.CategoryProductsActivity
+import com.mobatia.mobishop.constants.*
+import com.mobatia.mobishop.home.adapter.BannerViewPagerAdapter
 import com.mobatia.mobishop.home.adapter.CategoryRecyclerAdapter
+import com.mobatia.mobishop.home.adapter.HomeItemsRecyclerAdapter
+import com.mobatia.mobishop.home.model.*
+import com.mobatia.mobishop.product_detail.ProductDetailActivitytitle
+import com.mobatia.mobishop.signup.model.PinCodeResponseModel
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.view.Window
-import android.widget.*
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.mobatia.mobishop.category_products.CategoryProductsActivity
-import com.mobatia.mobishop.home.adapter.HomeItemsRecyclerAdapter
-import com.mobatia.mobishop.product_detail.ProductDetailActivity
-import com.mobatia.mobishop.signup.model.PinCodeResponseModel
-import android.text.Editable
-
-import android.text.TextWatcher
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.viewpager.widget.ViewPager
-import com.mobatia.mobishop.constants.*
-import com.mobatia.mobishop.home.adapter.BannerViewPagerAdapter
-import com.mobatia.mobishop.home.model.*
-import com.mobatia.mobishop.product_detail.ProductDetailActivityButton
-import com.mobatia.mobishop.product_detail.ProductDetailActivityNew
-import com.mobatia.mobishop.product_detail.ProductDetailActivitytitle
 
 
 class HomeActivity : AppCompatActivity() {
@@ -73,19 +65,21 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         mContext = this
-       // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        filePath = ""
         Intent.FLAG_ACTIVITY_CLEAR_TASK
-        progress=findViewById(R.id.progress)
+        progress = findViewById(R.id.progress)
         if (CommonClass.isInternetAvailable(mContext)) {
             progress.visibility = View.VISIBLE
             getHomeDetail()
             getstoreSettings()
             getCart()
-        }
-        else
-        {
-            Toast.makeText(mContext,"Network error occurred. Please check your internet connection and try again later",
-                Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                mContext,
+                "Network error occurred. Please check your internet connection and try again later",
+                Toast.LENGTH_SHORT
+            ).show()
         }
         initUI()
 

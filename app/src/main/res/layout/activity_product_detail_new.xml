@@ -54,7 +54,7 @@
                 android:background="@drawable/offer_bg"
                 android:paddingLeft="10dp"
                 android:text="25% off"
-                android:textColor="@color/white" />
+                android:textColor="@color/text_color_variant" />
             <ImageView
                 android:id="@+id/productImg"
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="25dp"
                     android:text="Add To Cart"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="18sp" />
 
                 <TextView
@@ -101,7 +101,7 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="20dp"
                     android:gravity="right"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="18sp" />
             </RelativeLayout>
 
@@ -125,7 +125,7 @@
                         android:layout_marginEnd="25dp"
                         android:layout_marginBottom="10dp"
                         android:gravity="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -137,7 +137,7 @@
                         android:background="@drawable/offer_bg"
                         android:paddingLeft="10dp"
                         android:text="25% off"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_color_variant"
                         android:visibility="gone" />
 
                     <LinearLayout
@@ -162,7 +162,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="-"
-                                android:textColor="@color/teal_200"
+                                android:textColor="@color/text_color_c"
                                 android:textSize="25sp" />
 
                             <TextView
@@ -172,7 +172,7 @@
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/text_color" />
 
                             <TextView
                                 android:id="@+id/addTxt"
@@ -182,7 +182,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="+"
-                                android:textColor="@color/teal_200"
+                                android:textColor="@color/text_color_c"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
@@ -202,7 +202,7 @@
                                     android:id="@+id/actualPrice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/red"
+                                    android:textColor="@color/text_color_d"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -217,7 +217,7 @@
                                     app:layout_constraintHorizontal_bias="0.466"
                                     app:layout_constraintStart_toStartOf="@+id/actualPrice"
                                     app:layout_constraintTop_toTopOf="@+id/actualPrice"
-                                    app:srcCompat="@color/black" />
+                                    app:srcCompat="@color/background_color_d" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <RelativeLayout
@@ -232,7 +232,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/text_color"
                                     android:textSize="18sp" />
                             </RelativeLayout>
 
@@ -248,7 +248,7 @@
                         android:layout_marginRight="5dp"
                         android:gravity="right"
                         android:text="Not Deliverable"
-                        android:textColor="@color/red"
+                        android:textColor="@color/text_color_d"
                         android:visibility="gone" />
 
                     <TextView
@@ -259,7 +259,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
                         android:lineHeight="25sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp" />
 
                     <TextView
@@ -270,7 +270,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
                         android:lineHeight="25sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="18sp" />
                 </LinearLayout>
             </ScrollView>

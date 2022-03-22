@@ -2,7 +2,7 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@color/white"
+    android:background="@color/background_color_a"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:text="MC051522"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -38,21 +38,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.25"
                 android:text="Total Products"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center_vertical"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text=":"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/totlProductTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.25"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center_vertical"
                 android:text="12"/>
         </LinearLayout>
@@ -72,21 +72,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.25"
                 android:text="Total Amount"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center_vertical"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text=":"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/totalAmountTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.25"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center_vertical"
                 android:text="12"/>
         </LinearLayout>
@@ -106,21 +106,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.25"
                 android:text="Payment"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center_vertical"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text=":"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/paymentTypeTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.25"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:gravity="center_vertical"
                 android:text="Cash on Delivery"/>
         </LinearLayout>
@@ -145,7 +145,7 @@
                 android:layout_marginBottom="5dp"
                 android:visibility="invisible"
                 android:text="Delivery Address"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="16sp" />
 
             <TextView
@@ -158,7 +158,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="MC051522"
-                android:textColor="@color/red"
+                android:textColor="@color/text_color_d"
                 android:textSize="16sp" />
 
         </RelativeLayout>
@@ -193,28 +193,28 @@
                     android:id="@+id/nameTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/addressTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/localityTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/phoneTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color" />
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>

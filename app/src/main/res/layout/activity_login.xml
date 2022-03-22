@@ -17,6 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_logo" />
+
     <TextView
         android:id="@+id/signTxt"
         android:layout_width="match_parent"
@@ -26,19 +27,19 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="24dp"
         android:text="Login / Register"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="24dp"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/signInHintTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/signTxt"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="4dp"
         android:layout_marginRight="24dp"
-        android:textColor="@color/grey"
-        android:layout_below="@+id/signTxt"
-        />
+        android:textColor="@color/background_color_c" />
 
     <TextView
         android:id="@+id/mobNumberTxt"
@@ -46,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/signInHintTxt"
         android:layout_marginLeft="24dp"
+        android:textColor="@color/text_color"
         android:layout_marginTop="40dp"
         android:layout_marginRight="24dp"
         android:text="Mobile Number" />
@@ -58,6 +60,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:background="@null"
+        android:textColor="@color/text_color"
         android:inputType="number" />
 
     <ImageView
@@ -69,7 +72,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="24dp"
         android:visibility="gone"
-        android:background="@color/teal_200" />
+        android:background="@color/image_background_a" />
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -77,7 +81,7 @@
         android:layout_below="@+id/phnNumberTxt"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:background="@color/grey" />
+        android:background="@color/background_color_c" />
 
     <Button
         android:id="@+id/proceedBtn"
@@ -89,7 +93,7 @@
         android:layout_marginRight="24dp"
         android:background="@drawable/rect_teal"
         android:text="Proceed"
-        android:textColor="@color/white" />
+        android:textColor="@color/text_color_variant" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -111,12 +115,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account?"/>
+
         <TextView
             android:id="@+id/signUpTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Signup"
-            android:textColor="@color/teal_200"/>
+            android:textColor="@color/text_color_c" />
     </LinearLayout>
 
 

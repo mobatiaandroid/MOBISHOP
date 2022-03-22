@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/text_color" />
 
     <TextView
         android:id="@+id/descriptionTxt"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="5dp"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
         android:layout_below="@+id/confirmTxt" />
     <LinearLayout
@@ -39,6 +39,7 @@
             android:id="@+id/changeBtn"
             android:layout_width="0dp"
             android:layout_height="40dp"
+            android:textColor="@color/text_color"
             android:text="Cancel"
             android:background="@drawable/rectangle_with_white_bacg_teal_border"
             android:layout_weight="2"/>
@@ -51,6 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:text="Logout"
+            android:textColor="@color/text_color"
             android:background="@drawable/rectangle_with_white_bacg_teal_border"
             android:layout_weight="2"/>
     </LinearLayout>

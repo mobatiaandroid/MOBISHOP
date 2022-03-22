@@ -54,34 +54,34 @@ class AddressActivity  : AppCompatActivity() {
 
     fun initUI()
     {
-        backImg=findViewById(R.id.backImg)
-        addAddress=findViewById(R.id.addAddress)
-        addressRecycler=findViewById(R.id.addressRecycler)
-        progress=findViewById(R.id.progress)
+        backImg = findViewById(R.id.backImg)
+        addAddress = findViewById(R.id.addAddress)
+        addressRecycler = findViewById(R.id.addressRecycler)
+        progress = findViewById(R.id.progress)
         var linearLayoutManager = LinearLayoutManager(mContext)
         addressRecycler.layoutManager = linearLayoutManager
 
-        backImg.setOnClickListener(View.OnClickListener {
+        backImg.setOnClickListener {
             finish()
-        })
-        addAddress.setOnClickListener(View.OnClickListener {
+        }
+        addAddress.setOnClickListener {
 
             startActivity(Intent(mContext, AddAddressActivity::class.java))
-        })
+        }
 
         addressRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
 
                 val intent = Intent(mContext, CustomerAddressEditActivity::class.java)
-                intent.putExtra("id",addrressArrayList.get(position).id)
-                intent.putExtra("name",addrressArrayList.get(position).name)
-                intent.putExtra("address",addrressArrayList.get(position).address)
-                intent.putExtra("locality",addrressArrayList.get(position).locality)
-                intent.putExtra("city",addrressArrayList.get(position).city)
-                intent.putExtra("state",addrressArrayList.get(position).state)
-                intent.putExtra("pincode",addrressArrayList.get(position).pincode)
-                intent.putExtra("phone",addrressArrayList.get(position).phone)
-                intent.putExtra("address_type",addrressArrayList.get(position).address_type)
+                intent.putExtra("id", addrressArrayList.get(position).id)
+                intent.putExtra("name", addrressArrayList.get(position).name)
+                intent.putExtra("address", addrressArrayList.get(position).address)
+                intent.putExtra("locality", addrressArrayList.get(position).locality)
+                intent.putExtra("city", addrressArrayList.get(position).city)
+                intent.putExtra("state", addrressArrayList.get(position).state)
+                intent.putExtra("pincode", addrressArrayList.get(position).pincode)
+                intent.putExtra("phone", addrressArrayList.get(position).phone)
+                intent.putExtra("address_type", addrressArrayList.get(position).address_type)
                 startActivity(intent)
             }
 

@@ -2,7 +2,7 @@
 <RelativeLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:layout_margin="10dp"
-    android:background="@color/white"
+    android:background="@color/background_color_a"
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
             <ImageView
                 android:id="@+id/addressImg"
                 android:layout_width="45dp"
+                android:layout_height="34dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="5dp"
                 android:layout_marginLeft="10dp"
-                android:layout_height="45dp"/>
+                android:layout_marginRight="5dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     />
                 <TextView
                     android:id="@+id/addressTxt"
@@ -44,7 +44,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     />
                 <TextView
                     android:id="@+id/phoneNumberTxt"
@@ -53,7 +53,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     />
                 <TextView
                     android:id="@+id/accountstatus"
@@ -63,7 +63,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:gravity="right"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/text_color_c"
                     />
 
             </LinearLayout>

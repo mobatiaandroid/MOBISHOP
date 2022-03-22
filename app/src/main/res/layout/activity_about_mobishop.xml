@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_a"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ProgressBar
         android:id="@+id/progress"
@@ -40,7 +41,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="About Mobishop"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -60,7 +61,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
                 android:lineHeight="25sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="16sp" />
         </ScrollView>
 

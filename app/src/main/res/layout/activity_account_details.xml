@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_a"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ProgressBar
         android:id="@+id/progress"
@@ -38,7 +39,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="My Profile"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -70,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="GOOD MORNING"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp" />
 
                     <TextView
@@ -79,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Name"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -101,7 +102,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="S"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_color_variant"
                         android:textSize="30sp"
                         android:textStyle="italic" />
                 </RelativeLayout>
@@ -123,31 +124,35 @@
                 android:id="@+id/userNameTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@color/text_color_e" />
 
             <EditText
                 android:id="@+id/usernNameEdtTxt"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:padding="5dp"
                 android:background="@drawable/rectangle_with_white_bacg_teal_border"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:id="@+id/emailTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Email ID" />
+                android:text="Email ID"
+                android:textColor="@color/text_color_e" />
 
             <EditText
                 android:id="@+id/emailEdtTxt"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:padding="5dp"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/rectangle_with_white_bacg_teal_border"
-                android:inputType="textEmailAddress" />
+                android:padding="5dp"
+                android:textColor="@color/text_color" />
 
 
         </LinearLayout>
@@ -160,6 +165,6 @@
             android:layout_margin="10dp"
             android:background="@drawable/rect_teal"
             android:text="Proceed"
-            android:textColor="@color/white" />
+            android:textColor="@color/text_color_variant" />
     </RelativeLayout>
 </RelativeLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:background="@color/background_color_b"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@color/text_color_variant"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="100">
@@ -60,7 +60,7 @@
                     android:layout_centerInParent="true"
                     android:gravity="center"
                     android:text="112"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_color_variant"
                     android:textSize="12sp" />
             </RelativeLayout>
 
@@ -128,7 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="GOOD MORNING"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp" />
 
                     <TextView
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Name"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -159,7 +159,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="S"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_color_variant"
                         android:textSize="30sp"
                         android:textStyle="italic" />
                 </RelativeLayout>
@@ -171,7 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/profilerel"
-            android:background="@color/grey" />
+            android:background="@color/background_color_c" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/profileRecycler"

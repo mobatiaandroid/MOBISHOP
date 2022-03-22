@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:background="@color/background_color_b"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <ProgressBar
     android:id="@+id/progress"
@@ -33,7 +33,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                     android:id="@+id/changePinImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/teal_200"
+                    android:textColor="@color/text_color_c"
                     android:text="change" />
             </RelativeLayout>
         </LinearLayout>
@@ -83,20 +83,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/search"/>
+
             <EditText
                 android:id="@+id/editTextSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:textColorHint="@color/grey"
-                android:textColor="@color/black"
+                android:hint="@string/search_hint"
+                android:textColor="@color/text_color"
                 android:focusable="true"
                 android:maxLines="1"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/rectangle_with_full_white"
-                android:hint="@string/search_hint"/>
+                android:textColorHint="@color/text_hint" />
         </LinearLayout>
     <RelativeLayout
         android:layout_width="0dp"
@@ -110,7 +111,7 @@
             android:layout_height="75dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:background="@color/white" />
+            android:background="@color/background_color_a" />
     </RelativeLayout>
 
     </LinearLayout>
@@ -140,7 +141,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/category"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
                 <TextView
@@ -185,7 +186,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@color/background_color_a"
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="100">
@@ -239,7 +240,7 @@
                     android:layout_centerInParent="true"
                     android:gravity="center"
                     android:text="112"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_color_variant"
                     android:textSize="12sp" />
             </RelativeLayout>
 

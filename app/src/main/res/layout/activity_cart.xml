@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:background="@color/background_color_b"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@color/background_color_a"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="100">
@@ -58,8 +58,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:text="112"
-                    android:textColor="@color/white"
+                    android:text="10"
+                    android:textColor="@color/text_color_variant"
                     android:textSize="12sp" />
             </RelativeLayout>
 
@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/featureLinear"
-        android:background="@color/button"
+        android:background="@color/button_a"
         android:visibility="gone">
 
         <TextView
@@ -111,7 +111,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:textSize="18sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/text_color_variant" />
 
     </RelativeLayout>
 
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Cart"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -168,7 +168,7 @@
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/grey"
+                    android:background="@color/background_color_c"
                     android:layout_below="@+id/cartRecycler"/>
                 <RelativeLayout
                     android:id="@+id/addressRel"
@@ -187,7 +187,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:text="Delivery Location"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -201,7 +201,7 @@
                         android:layout_marginRight="10dp"
                         android:text="Change"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/teal_200"
+                        android:textColor="@color/text_color_c"
                         android:textSize="14sp" />
 
                     <RelativeLayout
@@ -239,7 +239,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="10dp"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/text_color" />
 
                             <TextView
                                 android:id="@+id/addressTxt"
@@ -248,7 +248,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="10dp"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/text_color" />
 
                             <TextView
                                 android:id="@+id/phoneNumberTxt"
@@ -257,7 +257,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="10dp"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/text_color" />
 
                         </LinearLayout>
 
@@ -282,7 +282,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/emptyCartImg"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="18sp"
                 android:text="No Items in your Cart"/>
         </RelativeLayout>

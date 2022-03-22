@@ -36,9 +36,9 @@ class CategoryRecyclerAdapter(private var categoryDetailArrayList: ArrayList<Hom
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = categoryDetailArrayList[position]
-        var imagePath=filepath+categoryDetailArrayList.get(position).category_image
+        var imagePath = filepath + categoryDetailArrayList[position].category_image
         Log.e("Cat Img",imagePath)
-        holder.categoryTxt.setText(categoryDetailArrayList.get(position).name)
+        holder.categoryTxt.text = categoryDetailArrayList[position].name
         Glide.with(mContext) //1
             .load(imagePath)
             .placeholder(R.drawable.location)

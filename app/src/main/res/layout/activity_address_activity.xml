@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_a"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ProgressBar
         android:id="@+id/progress"
@@ -39,7 +40,7 @@
                 android:gravity="center"
                 android:layout_centerInParent="true"
                 android:text="Delivery Address"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -57,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/add_cart"
+        android:src="@drawable/icon_add"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"/>
 </RelativeLayout>

@@ -28,7 +28,7 @@
     <color name="grey_html">#7C7C7C</color>
     <color name="grey_x11">#BDBDBD</color>
 
-    <!-- Day theme -->
+    <!-- Night theme -->
     <color name="background_color_a">#FFFFFF</color>
     <color name="background_color_b">#F9F9F9</color>
     <color name="background_color_c">#BDBDBD</color>
@@ -64,4 +64,37 @@
     <color name="background_color_item_d">#117C6E</color>
 
 
+    <!-- <color name="background_color_a">#000000</color>
+     <color name="background_color_b">#060606</color>
+     <color name="background_color_c">#424242</color>
+     <color name="background_color_d">#ffffff</color>
+     <color name="back_button">#ab4e8a</color>
+     <color name="text_color">#ffffff</color>
+     <color name="text_color_variant">#000000</color>
+     <color name="text_color_c">#fc253a</color>
+     <color name="text_color_d">#00fff9</color>
+     <color name="text_color_e">#424242</color>
+     <color name="text_hint">#424242</color>
+     <color name="circle_filled">#fc253a</color>
+     <color name="stroke">#fc253a</color>
+     <color name="fill_color">#000000</color>
+     <color name="rectangle_filled">#fc253a</color>
+     <color name="logo_color_a">#dd4a8c</color>
+     <color name="logo_color_b">#ff5662</color>
+     <color name="home">#c2cfeb</color>
+     <color name="count_badge">#00fff9</color>
+     <color name="button_a">#ff5662</color>
+     <color name="icon">#ff5662</color>
+     <color name="image_background_a">#fc253a</color>
+     <color name="offer_icon">#dd4a8c</color>
+     <color name="offer_icon_b">#00a2a2</color>
+     <color name="gradient_start">#a00409</color>
+     <color name="gradient_center">#79181b</color>
+     <color name="gradient_end">#170b0c</color>
+     <color name="circle_image_border">#5f251a</color>
+     <color name="close_button">#757571</color>
+     <color name="background_color_item_a">#ff5662</color>
+     <color name="background_color_item_b">#ee8391</color>
+     <color name="background_color_item_c">#dc6070</color>
+     <color name="background_color_item_d">#ee8391</color>-->
 </resources>

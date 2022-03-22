@@ -39,11 +39,11 @@ class AddressRecyclerAdapter (private var addressArrayList: ArrayList<AddressMod
         if(list.address_type==1)
         {
             //Home
-            holder.addressImg.setImageResource(R.drawable.home_address)
+            holder.addressImg.setImageResource(R.drawable.icon_home)
         }
         else
         {
-            holder.addressImg.setImageResource(R.drawable.office_address)
+            holder.addressImg.setImageResource(R.drawable.icon_office)
         }
 
         if(list.is_default==1)

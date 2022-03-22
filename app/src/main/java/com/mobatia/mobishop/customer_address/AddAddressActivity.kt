@@ -27,18 +27,20 @@ class AddAddressActivity : AppCompatActivity() {
     lateinit var pinTxt: TextView
     lateinit var phoneTxt: TextView
     lateinit var proceedBtn: Button
-    lateinit var nameEditTxt:EditText
-    lateinit var addressEditTxt:EditText
-    lateinit var localityEditTxt:EditText
-    lateinit var cityEditTxt:EditText
-    lateinit var stateEditTxt:EditText
-    lateinit var pinEditTxt:EditText
-    lateinit var phoneEditTxt:EditText
+    lateinit var nameEditTxt: EditText
+    lateinit var addressEditTxt: EditText
+    lateinit var localityEditTxt: EditText
+    lateinit var cityEditTxt: EditText
+    lateinit var stateEditTxt: EditText
+    lateinit var pinEditTxt: EditText
+    lateinit var phoneEditTxt: EditText
     lateinit var hmeAddress: ImageView
     lateinit var backImg: ImageView
     lateinit var officeAddress: ImageView
-    var isSelected=false
-    var addressType:Int=0
+    lateinit var llHomeAddress: LinearLayout
+    lateinit var llOfficeAddress: LinearLayout
+    var isSelected = false
+    var addressType: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_address)
@@ -47,26 +49,27 @@ class AddAddressActivity : AppCompatActivity() {
 
     }
 
-    fun initUI()
-    {
-        nameTxt=findViewById(R.id.nameTxt)
-        addressTxt=findViewById(R.id.addressTxt)
-        localityTxt=findViewById(R.id.localityTxt)
-        cityTxt=findViewById(R.id.cityTxt)
-        stateTxt=findViewById(R.id.stateTxt)
-        pinTxt=findViewById(R.id.pinTxt)
-        phoneTxt=findViewById(R.id.phoneTxt)
-        proceedBtn=findViewById(R.id.proceedBtn)
-        nameEditTxt=findViewById(R.id.nameEditTxt)
-        addressEditTxt=findViewById(R.id.addressEditTxt)
-        backImg=findViewById(R.id.backImg)
-        localityEditTxt=findViewById(R.id.localityEditTxt)
-        cityEditTxt=findViewById(R.id.cityEditTxt)
-        pinEditTxt=findViewById(R.id.pinEditTxt)
-        stateEditTxt=findViewById(R.id.stateEditTxt)
-        phoneEditTxt=findViewById(R.id.phoneEditTxt)
-        hmeAddress=findViewById(R.id.hmeAddress)
-        officeAddress=findViewById(R.id.officeAddress)
+    fun initUI() {
+        nameTxt = findViewById(R.id.nameTxt)
+        addressTxt = findViewById(R.id.addressTxt)
+        localityTxt = findViewById(R.id.localityTxt)
+        cityTxt = findViewById(R.id.cityTxt)
+        stateTxt = findViewById(R.id.stateTxt)
+        pinTxt = findViewById(R.id.pinTxt)
+        phoneTxt = findViewById(R.id.phoneTxt)
+        proceedBtn = findViewById(R.id.proceedBtn)
+        nameEditTxt = findViewById(R.id.nameEditTxt)
+        addressEditTxt = findViewById(R.id.addressEditTxt)
+        backImg = findViewById(R.id.backImg)
+        localityEditTxt = findViewById(R.id.localityEditTxt)
+        cityEditTxt = findViewById(R.id.cityEditTxt)
+        pinEditTxt = findViewById(R.id.pinEditTxt)
+        stateEditTxt = findViewById(R.id.stateEditTxt)
+        phoneEditTxt = findViewById(R.id.phoneEditTxt)
+        hmeAddress = findViewById(R.id.hmeAddress)
+        officeAddress = findViewById(R.id.officeAddress)
+        llHomeAddress = findViewById(R.id.llHomeAddress)
+        llOfficeAddress = findViewById(R.id.llOfficeAddress)
         val nameval = "<font color=#FF000000>Name</font> <font color=#ff0006>*</font>"
         val addressTxtval = "<font color=#FF000000>Address</font> <font color=#ff0006>*</font>"
         val localityTxtval = "<font color=#FF000000>Locality</font> <font color=#ff0006>*</font>"
@@ -87,22 +90,22 @@ class AddAddressActivity : AppCompatActivity() {
 
             finish()
         })
-        hmeAddress.setOnClickListener(View.OnClickListener {
+        llHomeAddress.setOnClickListener(View.OnClickListener {
             hmeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
             hmeAddress.setImageResource(R.drawable.check_teal)
             officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
             officeAddress.setImageResource(R.drawable.rect_curved_white_teal)
-            addressType=1
-            isSelected=true
-            addressType=1
+            addressType = 1
+            isSelected = true
+            addressType = 1
         })
-        officeAddress.setOnClickListener(View.OnClickListener {
+        llOfficeAddress.setOnClickListener(View.OnClickListener {
             officeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
             officeAddress.setImageResource(R.drawable.check_teal)
             hmeAddress.setBackgroundResource(R.drawable.rect_curved_white_teal)
             hmeAddress.setImageResource(R.drawable.rect_curved_white_teal)
-            isSelected=true
-            addressType=2
+            isSelected = true
+            addressType = 2
         })
 
         proceedBtn.setOnClickListener(View.OnClickListener {

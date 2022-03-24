@@ -55,11 +55,14 @@ class CartActivity : AppCompatActivity() {
     lateinit var addrressArrayList: ArrayList<AddressModel>
     lateinit var filePath: String
     lateinit var cartRecycler: RecyclerView
+    lateinit var radioGroup: RadioGroup
     var addressSize: Int = 0
     var addressId: Int = 0
     lateinit var paymentSheet: PaymentSheet
     lateinit var cartCountRel: RelativeLayout
     lateinit var cartCountTxt: TextView
+    lateinit var radioCOD: RadioButton
+
     var cartCount: Int = 0
     val SECRET_KEY =
         "sk_test_51KfiCqSDDTJKbadAwruHQNB7XiQJJ1Ac9tFvVjv2kMhQX3scD5EdVC5AbdKiw5qjCfRGu81zuSWgsP8zpoByQnQV00RV4Mvk8c"
@@ -69,6 +72,13 @@ class CartActivity : AppCompatActivity() {
     var EPHEMERAL_KEY = ""
     var PAYMENT_KEY = ""
     var totalAmt = 0.0
+    var paymentMethod: PaymentMethod? = null
+
+
+    enum class PaymentMethod {
+        COD, APP
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
@@ -111,6 +121,10 @@ class CartActivity : AppCompatActivity() {
         cartRecycler.layoutManager = linearLayoutManager
         cartCountRel = findViewById(R.id.cartCountRel)
         cartCountTxt = findViewById(R.id.cartCountTxt)
+        radioGroup = findViewById(R.id.radioGroup)
+        radioCOD = findViewById(R.id.cashOnDeliveryButton)
+        radioCOD.isChecked = true
+        paymentMethod = PaymentMethod.COD
 
 
         /*******~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~******/
@@ -221,7 +235,17 @@ class CartActivity : AppCompatActivity() {
         })
         Log.e("ADDRESS SIZE", addressSize.toString())
 
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.cashOnDeliveryButton) {
+                paymentMethod = PaymentMethod.COD
+            } else if (checkedId == R.id.appPaymentButton) {
+                paymentMethod = PaymentMethod.APP
+            }
+        }
+
+
         proceedLinear.setOnClickListener(View.OnClickListener {
+
 
             if (addressSize == 0) {
                 showAddressDialog()
@@ -304,6 +328,7 @@ class CartActivity : AppCompatActivity() {
             cartRecycler.visibility = View.GONE
             addressRel.visibility = View.GONE
             proceedLinear.visibility = View.GONE
+            radioGroup.visibility = View.GONE
             emptyRel.visibility = View.VISIBLE
             PreferenceManager.setCartCount(mContext, "0")
             if (PreferenceManager.getCartCount(mContext).equals("0")) {
@@ -472,6 +497,7 @@ class CartActivity : AppCompatActivity() {
                         totalAmountTxt.setText("  Place Order ₹ " + pp.toString() + "  ")
                         cartRecycler.visibility = View.VISIBLE
                         proceedLinear.visibility = View.VISIBLE
+                        radioGroup.visibility = View.VISIBLE
                         emptyRel.visibility = View.GONE
                         val cartAdapter = CartItemRecyclerAdapter(
                             cartArrayList,
@@ -489,6 +515,7 @@ class CartActivity : AppCompatActivity() {
                     } else {
                         proceedLinear.visibility = View.GONE
                         addressRel.visibility = View.GONE
+                        radioGroup.visibility = View.GONE
                         emptyRel.visibility = View.VISIBLE
                         //   Toast.makeText(mContext,"No items in your cart", Toast.LENGTH_SHORT).show()
 
@@ -653,7 +680,33 @@ class CartActivity : AppCompatActivity() {
 
                 if (response.code() == 200) {
                     if (response.body()!!.status.equals("success")) {
-                        paymentFLow()
+                        if (paymentMethod == null) {
+                            Toast.makeText(
+                                applicationContext,
+                                "Please Select a payment method",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            if (paymentMethod == PaymentMethod.COD) {
+                                cartRecycler.visibility = View.GONE
+                                addressRel.visibility = View.GONE
+                                proceedLinear.visibility = View.GONE
+                                radioGroup.visibility = View.GONE
+                                emptyRel.visibility = View.VISIBLE
+                                showOrderConfirmationDialog()
+                                PreferenceManager.setCartCount(mContext, "0")
+                                if (PreferenceManager.getCartCount(mContext).equals("0")) {
+                                    cartCountRel.visibility = View.GONE
+
+                                } else {
+                                    cartCountRel.visibility = View.VISIBLE
+                                    cartCountTxt.setText(PreferenceManager.getCartCount(mContext))
+                                }
+                            } else if (paymentMethod == PaymentMethod.APP) {
+                                paymentFLow()
+                            }
+                        }
+
                         // hide items only after payment success
 //                        cartRecycler.visibility = View.GONE
 //                        addressRel.visibility = View.GONE

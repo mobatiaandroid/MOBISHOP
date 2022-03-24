@@ -35,8 +35,9 @@
         <entry key="app/src/main/res/layout/activity_account_details.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_address_activity.xml" value="0.19114583333333332" />
-        <entry key="app/src/main/res/layout/activity_cart.xml" value="0.19924337957124844" />
+        <entry key="app/src/main/res/layout/activity_cart.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_cart_new.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_cart_payment.xml" value="0.48703703703703705" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_category_products.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.25" />

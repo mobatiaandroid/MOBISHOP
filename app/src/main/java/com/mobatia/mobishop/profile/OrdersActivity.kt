@@ -85,9 +85,8 @@ class OrdersActivity : AppCompatActivity() {
                     Log.e("It Works","Success")
                     if (response.body()!!.status.equals("success"))
                     {
-                        if (response.body()!!.orders.size>0)
-                        {
-                            filePath=response.body()!!.file_path
+                        if (response.body()!!.orders.isNotEmpty()) {
+                            filePath = response.body()!!.file_path
                             ordersArrayList.addAll(response.body()!!.orders)
 //                            val cartAdapter = OrdersRecyclerAdapter(ordersArrayList,mContext,filePath)
 //                            ordersRecycler.setAdapter(cartAdapter)

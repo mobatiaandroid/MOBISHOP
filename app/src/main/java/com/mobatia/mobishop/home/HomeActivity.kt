@@ -465,19 +465,31 @@ class HomeActivity : AppCompatActivity() {
             if (productArrayList.get(s).name.toLowerCase().contains(text.toLowerCase())) {
                 //adding the element to filtered list
 
-                var model=HomeProductsArrayModel(productArrayList.get(s).id,productArrayList.get(s).slug,
-                    productArrayList.get(s).sku,productArrayList.get(s).quantity,productArrayList.get(s).actual_price,
-                    productArrayList.get(s).sale_price,productArrayList.get(s).has_variant,productArrayList.get(s).name,
-                    productArrayList.get(s).cover_image,productArrayList.get(s).category_name,productArrayList.get(s).category_slug,
-                    productArrayList.get(s).product_slug)
+                var model=HomeProductsArrayModel(
+                    productArrayList.get(s).id,
+                    productArrayList.get(s).slug,
+                    productArrayList.get(s).sku,
+                    productArrayList.get(s).quantity,
+                    productArrayList.get(s).actual_price,
+                    productArrayList.get(s).sale_price,
+                    productArrayList.get(s).has_variant,
+                    productArrayList.get(s).name,
+                    productArrayList.get(s).cover_image,
+                    productArrayList.get(s).category_name,
+                    productArrayList.get(s).category_slug,
+                    productArrayList.get(s).product_slug
+                )
 
                 productArrayListNew.add(model)
                 filterdNames.add(model)
+                Log.e("Filtered names", filterdNames.toString())
             }
-
+            Log.e("Filtered names12", filterdNames.toString())
         }
+        Log.e("Filtered names123", filterdNames.toString())
         //calling a method of the adapter class and passing the filtered list
-        itemRecyclerAdapter!!.filterList(filterdNames)
+        if (filterdNames.isNotEmpty()) itemRecyclerAdapter!!.filterList(filterdNames)
+
     }
 
 }

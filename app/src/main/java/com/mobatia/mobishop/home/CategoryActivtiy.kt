@@ -168,7 +168,7 @@ class CategoryActivtiy : AppCompatActivity() {
             }
         }
         //calling a method of the adapter class and passing the filtered list
-        categoryRecyclerAdapter!!.filterList(filterdNames)
+        if (filterdNames.isEmpty()) categoryRecyclerAdapter!!.filterList(filterdNames)
     }
 
 

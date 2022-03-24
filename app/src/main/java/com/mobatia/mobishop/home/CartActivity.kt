@@ -61,6 +61,8 @@ class CartActivity : AppCompatActivity() {
     lateinit var paymentSheet: PaymentSheet
     lateinit var cartCountRel: RelativeLayout
     lateinit var cartCountTxt: TextView
+    lateinit var radioCOD: RadioButton
+
     var cartCount: Int = 0
     val SECRET_KEY =
         "sk_test_51KfiCqSDDTJKbadAwruHQNB7XiQJJ1Ac9tFvVjv2kMhQX3scD5EdVC5AbdKiw5qjCfRGu81zuSWgsP8zpoByQnQV00RV4Mvk8c"
@@ -71,6 +73,7 @@ class CartActivity : AppCompatActivity() {
     var PAYMENT_KEY = ""
     var totalAmt = 0.0
     var paymentMethod: PaymentMethod? = null
+
 
     enum class PaymentMethod {
         COD, APP
@@ -119,6 +122,9 @@ class CartActivity : AppCompatActivity() {
         cartCountRel = findViewById(R.id.cartCountRel)
         cartCountTxt = findViewById(R.id.cartCountTxt)
         radioGroup = findViewById(R.id.radioGroup)
+        radioCOD = findViewById(R.id.cashOnDeliveryButton)
+        radioCOD.isChecked = true
+        paymentMethod = PaymentMethod.COD
 
 
         /*******~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~******/

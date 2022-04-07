@@ -509,7 +509,8 @@ class CartActivity : AppCompatActivity() {
                             proceedLinear,
                             emptyRel,
                             cartCountRel,
-                            cartCountTxt
+                            cartCountTxt,
+                            radioGroup
                         )
                         cartRecycler.setAdapter(cartAdapter)
                     } else {

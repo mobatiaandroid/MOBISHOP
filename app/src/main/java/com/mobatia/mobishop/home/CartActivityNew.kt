@@ -307,8 +307,8 @@ class CartActivityNew : AppCompatActivity() {
                         cartRecycler.visibility=View.VISIBLE
                         proceedLinear.visibility=View.VISIBLE
                         emptyRel.visibility=View.GONE
-                        val cartAdapter = CartItemRecyclerAdapter(cartArrayList,mContext,filePath,totalAmountTxt,totalAmt,addressRel,proceedLinear,emptyRel,cartCountRel,cartCountTxt)
-                        cartRecycler.setAdapter(cartAdapter)
+                        /*val cartAdapter = CartItemRecyclerAdapter(cartArrayList,mContext,filePath,totalAmountTxt,totalAmt,addressRel,proceedLinear,emptyRel,cartCountRel,cartCountTxt)
+                        cartRecycler.setAdapter(cartAdapter)*/
                     }
                     else
                     {

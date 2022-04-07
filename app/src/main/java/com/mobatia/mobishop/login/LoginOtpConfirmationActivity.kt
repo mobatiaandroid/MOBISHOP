@@ -42,6 +42,7 @@ class LoginOtpConfirmationActivity : Activity() {
     lateinit var token: String
      var new_User: Int=1
     var otptxt:String=""
+    var User_name:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp_confirmation)
@@ -53,7 +54,7 @@ class LoginOtpConfirmationActivity : Activity() {
         phn_no = intent.getStringExtra("phn_no").toString()
         otp = intent.getStringExtra("otp").toString()
         token = intent.getStringExtra("token").toString()
-        new_User = intent.getIntExtra("new_User",1)
+        new_User = intent.getIntExtra("new_user",1)
         otpNumber=findViewById(R.id.otpNumber)
         proceedBtn=findViewById(R.id.proceedBtn)
         otpTxt=findViewById(R.id.otpTxt)
@@ -88,7 +89,7 @@ class LoginOtpConfirmationActivity : Activity() {
         edt4.setOnKeyListener(GenericKeyEvent(edt4,edt3))
         edt5.setOnKeyListener(GenericKeyEvent(edt5,edt4))
         edt6.setOnKeyListener(GenericKeyEvent(edt6,edt5))
-        otpNumber.setText("Enter the OTP received in your mobile number +91XXXXXXX"+phn_no.takeLast(3))
+        otpNumber.setText("Enter the OTP received in your mobile number +91XXXXXXXXXX")
         proceedBtn.setOnClickListener(View.OnClickListener {
             if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
             {
@@ -190,9 +191,11 @@ class LoginOtpConfirmationActivity : Activity() {
                         }
                         else
                         {
+                            User_name=response.body()!!.user_name
                             PreferenceManager.isNewUser(mContext,false)
                             PreferenceManager.setToken(mContext,token)
-                            val intent = Intent(mContext, SignUpLocationActivity::class.java)
+                            PreferenceManager.setUserName(mContext,User_name)
+                            val intent = Intent(mContext, HomeActivity::class.java)
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             finish()

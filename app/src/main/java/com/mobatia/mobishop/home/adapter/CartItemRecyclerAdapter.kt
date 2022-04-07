@@ -23,7 +23,7 @@ import retrofit2.Response
 import java.text.DecimalFormat
 
 lateinit var cartArrayList:ArrayList<CartApiModel>
-class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartItemsModel>, private var mContext: Context, private var filepath:String,private var totalAmountTxt:TextView,private var totalAmt:Double,private var addressRel:RelativeLayout,private var proceedLinear:RelativeLayout,private var emptyRel:RelativeLayout,private var cartCountRel:RelativeLayout,private var cartCountTxt:TextView) :
+class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartItemsModel>, private var mContext: Context, private var filepath:String,private var totalAmountTxt:TextView,private var totalAmt:Double,private var addressRel:RelativeLayout,private var proceedLinear:RelativeLayout,private var emptyRel:RelativeLayout,private var cartCountRel:RelativeLayout,private var cartCountTxt:TextView,private var radioGroup:RadioGroup) :
 
     RecyclerView.Adapter<CartItemRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -171,6 +171,7 @@ class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartIt
                 if (PreferenceManager.getCartCount(mContext).equals("0"))
                 {
                     cartCountRel.visibility=View.GONE
+                    radioGroup.visibility=View.GONE
 
                 }
                 else{
@@ -185,6 +186,8 @@ class CartItemRecyclerAdapter (private var cartDetailArrayList: ArrayList<CartIt
                     addressRel.visibility=View.GONE
                     proceedLinear.visibility=View.GONE
                     emptyRel.visibility=View.VISIBLE
+                    radioGroup.visibility=View.GONE
+
                 }
                 else{
                     emptyRel.visibility=View.GONE

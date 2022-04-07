@@ -94,7 +94,7 @@ class ProductDetailActivitytitle : AppCompatActivity() {
 
         cartRel.setOnClickListener(View.OnClickListener {
             Log.e("Click","WORKS")
-            val intent = Intent(mContext, CartActivityNew::class.java)
+            val intent = Intent(mContext, CartActivity::class.java)
             intent.putExtra("file_path",filePath)
             startActivity(intent)
         })
